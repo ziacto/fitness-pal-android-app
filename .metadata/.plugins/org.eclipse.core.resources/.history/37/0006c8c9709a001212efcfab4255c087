@@ -1,0 +1,5 @@
+package com.fitpal.android.settings.ui;
+
+public class SettingsFragment {
+
+}

@@ -1,0 +1,8 @@
+INDEX VERSION 1.126+E:\Personal Projects\fitness-pal-android-app\.metadata\.plugins\org.eclipse.jdt.core
+681618099.index
+2790387950.index
+1665642232.index
+2003492886.index
+3733832246.index
+1531412002.index
+3352491446.index
