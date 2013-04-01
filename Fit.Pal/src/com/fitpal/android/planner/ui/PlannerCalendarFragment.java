@@ -75,7 +75,7 @@ public class PlannerCalendarFragment extends BaseFragment {
 		t.commit();
 	}
 
-	private void updateSummary(Date date){
+	private void updateSummary(final Date date){
 		boolean summaryExists = random.nextBoolean();
 		TextView summaryDate = (TextView)mActivity.findViewById(R.id.tv_summary_date);
 		TextView summary = (TextView)mActivity.findViewById(R.id.tv_summary);
@@ -95,6 +95,18 @@ public class PlannerCalendarFragment extends BaseFragment {
 			summary.setVisibility(View.GONE);
 		}
 		
+		View btnSelector = mActivity.findViewById(R.id.btn_selector);
+		btnSelector.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ViewGroup view = (ViewGroup) mActivity.findViewById(R.id.fragmentHolder);
+				view.removeAllViews();
+				DailyTaskFragment dailyFragment = new DailyTaskFragment(date);
+				FragmentTransaction t = ((FragmentActivity)mActivity).getSupportFragmentManager().beginTransaction();
+				t.add(R.id.fragmentHolder, dailyFragment);
+				t.commit();
+			}
+		});
 		
 	}
 }

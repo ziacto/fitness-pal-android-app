@@ -8,7 +8,7 @@ package com.caldroid;
 
 public final class R {
 	public static final class id {
-		public static final int calendar_tv = 0x7f07003a;
+		public static final int calendar_tv = 0x7f07003f;
 		public static final int calendar_left_arrow = 0x7f070035;
 		public static final int calendar_gridview = 0x7f070039;
 		public static final int weekday_gridview = 0x7f070038;
@@ -35,7 +35,7 @@ public final class R {
 		public static final int app_name = 0x7f050000;
 	}
 	public static final class layout {
-		public static final int date_cell = 0x7f030019;
+		public static final int date_cell = 0x7f03001b;
 		public static final int calendar_view = 0x7f030018;
 	}
 	public static final class drawable {
