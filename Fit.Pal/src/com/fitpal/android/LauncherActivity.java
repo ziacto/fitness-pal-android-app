@@ -24,6 +24,8 @@ public class LauncherActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
         mActivity = this;
         setContentView(R.layout.activity_launcher);
+        String defaultFragment = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
+        FragmentManager.getInstance().launchFragment((FragmentActivity)mActivity, R.id.fragmentHolder, defaultFragment);
     }
 
 
