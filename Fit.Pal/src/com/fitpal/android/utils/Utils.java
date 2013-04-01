@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -60,5 +62,17 @@ public class Utils {
 		}
 		
 		return list;
+	}
+	
+	public static String convertDateToString(Date date, String format){
+		if(date == null)
+			return null;
+		
+		try{
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			return sdf.format(date);
+		}catch(Exception e){
+			return null;
+		}
 	}
 }

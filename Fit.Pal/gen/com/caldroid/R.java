@@ -39,10 +39,10 @@ public final class R {
 		public static final int calendar_view = 0x7f030018;
 	}
 	public static final class drawable {
-		public static final int red_border = 0x7f020080;
-		public static final int red_border_gray_bg = 0x7f020081;
-		public static final int right_arrow = 0x7f020082;
-		public static final int left_arrow = 0x7f02007f;
+		public static final int red_border = 0x7f020081;
+		public static final int red_border_gray_bg = 0x7f020082;
+		public static final int right_arrow = 0x7f020083;
+		public static final int left_arrow = 0x7f020080;
 		public static final int ic_launcher = 0x7f020074;
 		public static final int disable_cell = 0x7f020072;
 		public static final int calendar_prev_arrow = 0x7f020070;

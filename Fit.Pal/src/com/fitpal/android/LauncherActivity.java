@@ -12,6 +12,12 @@ import com.fitpal.android.utils.Utils;
 public class LauncherActivity extends SherlockFragmentActivity {
 
 	private Activity mActivity;
+	private static final String MENU_NEWS_FEED = "News Feed";
+	private static final String MENU_WORKOUT_PLAN = "Workout Plan";
+	private static final String MENU_FAV = "Favorites";
+	private static final String MENU_CONTACTS = "Contacts";
+	private static final String MENU_SETTINGS = "Settings";
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,24 +29,24 @@ public class LauncherActivity extends SherlockFragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add("News_Feed")
+		menu.add(MENU_NEWS_FEED)
 			.setIcon(R.drawable.ic_news_feed)
 			.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
-		menu.add("Workout Plan")
+		menu.add(MENU_WORKOUT_PLAN)
 			.setIcon(R.drawable.ic_menu_planner)
 			.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		
-		menu.add("Favorites")
+		menu.add(MENU_FAV)
 			.setIcon(R.drawable.ic_menu_favorites)
 			.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
-		menu.add("Contacts")
+		menu.add(MENU_CONTACTS)
 			.setIcon(R.drawable.ic_menu_contacts)
 			.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
 		
-		menu.add("Settings")
+		menu.add(MENU_SETTINGS)
 			.setIcon(R.drawable.ic_menu_settings)
 			.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
@@ -53,13 +59,15 @@ public class LauncherActivity extends SherlockFragmentActivity {
 		
 		String fragmentClass = null;
 		
-		if("News_Feed".equals(searchItem)){
+		if(MENU_NEWS_FEED.equals(searchItem)){
 			fragmentClass = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
-		}else if("Status".equals(searchItem)){
-			fragmentClass = "com.fitpal.android.profile.ui.ProfileFragment";
-		}else if("Favorites".equals(searchItem)){
-			fragmentClass = "com.fitpal.android.profile.ui.ProfileFragment";
-		}else if("Settings".equals(searchItem)){
+		}else if(MENU_WORKOUT_PLAN.equals(searchItem)){
+			fragmentClass = "com.fitpal.android.planner.ui.PlannerCalendarFragment";
+		}else if(MENU_FAV.equals(searchItem)){
+			//fragmentClass = "com.fitpal.android.profile.ui.ProfileFragment";
+		}else if(MENU_CONTACTS.equals(searchItem)){
+			//fragmentClass = "com.fitpal.android.settings.ui.SettingsFragment";
+		}else if(MENU_SETTINGS.equals(searchItem)){
 			fragmentClass = "com.fitpal.android.settings.ui.SettingsFragment";
 		}
 		
