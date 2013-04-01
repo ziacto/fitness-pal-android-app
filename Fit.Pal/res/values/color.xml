@@ -14,6 +14,7 @@
     <color name="selected_region_background">#20C4EE</color>
     <color name="link_color">#5C5CFF</color>
     
+    <color name="blue_bright_background">#33B5E5</color>
     <color name="black_background">#303030</color>
     <color name="black_header">#252525</color>
     <color name="black_seperator">#4F4F4F</color>
