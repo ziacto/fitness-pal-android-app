@@ -43,7 +43,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		}
 		mLvDailyTasks = (ListView)findViewById(R.id.lv_daily_planner);
 		mLvDailyTasks.setClickable(true);
-		mLvDailyTasks.setLongClickable(true);
+		
 		TextView date = (TextView)findViewById(R.id.tv_date);
 		date.setText(mDate);
 
