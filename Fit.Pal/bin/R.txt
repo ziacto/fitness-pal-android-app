@@ -332,7 +332,6 @@ int id abs__textButton 0x7f070013
 int id abs__title 0x7f07001b
 int id abs__titleDivider 0x7f07001c
 int id abs__up 0x7f07000b
-int id action_settings 0x7f070045
 int id btn_add_task 0x7f070044
 int id btn_selector 0x7f070041
 int id calendar_gridview 0x7f070039
@@ -348,6 +347,11 @@ int id homeAsUp 0x7f070006
 int id listMode 0x7f070002
 int id ll_planner 0x7f070040
 int id lv_daily_planner 0x7f07003e
+int id menu_contacts 0x7f070048
+int id menu_edit 0x7f070045
+int id menu_news_feed 0x7f070046
+int id menu_settings 0x7f070049
+int id menu_workout_planner 0x7f070047
 int id normal 0x7f070001
 int id showCustom 0x7f070008
 int id showHome 0x7f070005
@@ -397,7 +401,8 @@ int layout profile_page 0x7f03001e
 int layout settings_page 0x7f03001f
 int layout sherlock_spinner_dropdown_item 0x7f030020
 int layout sherlock_spinner_item 0x7f030021
-int menu launcher 0x7f0b0000
+int menu menu_daily_task 0x7f0b0000
+int menu menu_main 0x7f0b0001
 int string abs__action_bar_home_description 0x7f050001
 int string abs__action_bar_up_description 0x7f050002
 int string abs__action_menu_overflow_description 0x7f050003
@@ -413,9 +418,14 @@ int string abs__searchview_description_voice 0x7f05000f
 int string abs__share_action_provider_share_with 0x7f050007
 int string abs__shareactionprovider_share_with 0x7f050009
 int string abs__shareactionprovider_share_with_application 0x7f05000a
-int string action_settings 0x7f050010
-int string add_task 0x7f050011
+int string action_settings 0x7f050015
+int string add_task 0x7f050016
 int string app_name 0x7f050000
+int string menu_contacts 0x7f050012
+int string menu_edit 0x7f050014
+int string menu_news_feed 0x7f050010
+int string menu_settings 0x7f050013
+int string menu_workout_planner 0x7f050011
 int style AppBaseTheme 0x7f060000
 int style AppTheme 0x7f060001
 int style DialogWindowTitle_Sherlock 0x7f060038

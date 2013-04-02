@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
@@ -18,6 +19,7 @@ import com.caldroid.CaldroidFragment;
 import com.caldroid.CaldroidListener;
 import com.fitpal.android.R;
 import com.fitpal.android.common.BaseFragment;
+import com.fitpal.android.common.Constants;
 import com.fitpal.android.utils.Utils;
 
 public class PlannerCalendarFragment extends BaseFragment {
@@ -25,7 +27,6 @@ public class PlannerCalendarFragment extends BaseFragment {
 	private Activity mActivity;
 	private Handler mHandler;
 	private CaldroidFragment mCaldroidFragment;
-	private static final String DATE_FORMAT = "MM/dd/yyyy";
 	private Random random;
 	
 	public PlannerCalendarFragment(){
@@ -83,7 +84,7 @@ public class PlannerCalendarFragment extends BaseFragment {
 		
 		if(summaryExists){
 			btnAddTask.setVisibility(View.GONE);
-			String formattedDate = Utils.convertDateToString(date, DATE_FORMAT);
+			String formattedDate = Utils.convertDateToString(date, Constants.SIMPLE_DATE_FORMAT);
 			summaryDate.setText("Summary : " + formattedDate);
 			summaryDate.setVisibility(View.VISIBLE);
 			
@@ -99,12 +100,9 @@ public class PlannerCalendarFragment extends BaseFragment {
 		btnSelector.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ViewGroup view = (ViewGroup) mActivity.findViewById(R.id.fragmentHolder);
-				view.removeAllViews();
-				DailyTaskFragment dailyFragment = new DailyTaskFragment(date);
-				FragmentTransaction t = ((FragmentActivity)mActivity).getSupportFragmentManager().beginTransaction();
-				t.add(R.id.fragmentHolder, dailyFragment);
-				t.commit();
+				Intent intent = new Intent(mActivity, DailyTaskActivity.class);
+				intent.putExtra(Constants.KEY_DATE, Utils.convertDateToString(date, Constants.SIMPLE_DATE_FORMAT));
+				mActivity.startActivity(intent);
 			}
 		});
 		
