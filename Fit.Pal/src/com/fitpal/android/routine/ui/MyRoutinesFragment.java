@@ -13,11 +13,8 @@ import android.widget.ListView;
 
 import com.fitpal.android.R;
 import com.fitpal.android.common.BaseFragment;
-import com.fitpal.android.common.Constants;
-import com.fitpal.android.planner.ui.DailyTaskActivity;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
 import com.fitpal.android.routine.entity.Routine;
-import com.fitpal.android.utils.Utils;
 
 public class MyRoutinesFragment extends BaseFragment {
 
