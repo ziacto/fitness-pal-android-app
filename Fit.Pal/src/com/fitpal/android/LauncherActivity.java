@@ -40,15 +40,15 @@ public class LauncherActivity extends SherlockFragmentActivity {
 			case R.id.menu_news_feed:
 				fragmentClass = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
 			break;
-			
+
 			case R.id.menu_workout_planner:
 				fragmentClass = "com.fitpal.android.planner.ui.PlannerCalendarFragment";
 			break;
-			
+
 			case R.id.menu_contacts:
-				fragmentClass = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
+				fragmentClass = "com.fitpal.android.routine.ui.MyRoutinesFragment";
 			break;
-			
+
 			case R.id.menu_settings:
 				fragmentClass = "com.fitpal.android.settings.ui.SettingsFragment";
 			break;
