@@ -28,6 +28,12 @@
         android:background="@color/black_2"
      />
     
+    <ListView 
+	    android:id="@+id/lv_workouts"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    
+	    />
         
 
 </LinearLayout>

@@ -23,11 +23,11 @@ public class Constants {
 	
 	static{
 		exercisesMap.put("Cardio", CARDIO_EXERCISES);
-		exercisesMap.put("Cardio", ABS_EXERCISES);
-		exercisesMap.put("Cardio", BACK_EXERCISES);
-		exercisesMap.put("Cardio", CHEST_EXERCISES);
-		exercisesMap.put("Cardio", SHOULDER_EXERCISES);
-		exercisesMap.put("Cardio", BICEPS_EXERCISES);
-		exercisesMap.put("Cardio", STRETCHING_EXERCISES);
+		exercisesMap.put("Abs", ABS_EXERCISES);
+		exercisesMap.put("Back", BACK_EXERCISES);
+		exercisesMap.put("Chest", CHEST_EXERCISES);
+		exercisesMap.put("Shoulder", SHOULDER_EXERCISES);
+		exercisesMap.put("Biceps", BICEPS_EXERCISES);
+		exercisesMap.put("Stretching", STRETCHING_EXERCISES);
 	}
 }
