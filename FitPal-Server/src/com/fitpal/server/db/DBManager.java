@@ -6,20 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.apache.log4j.Logger;
-
 import com.fitpal.server.utils.Utils;
 
 
 public class DBManager {
 	
-	private static Logger log = Utils.getLogger();
-	
 	static{
 		try{
 			Class.forName(DbConstants.MYSQL_DRIVER);
 		}catch(ClassNotFoundException cfe){
-			log.error("DBManager:int :: Database Driver Class Not Found");
+			System.out.println("DBManager:int :: Database Driver Class Not Found");
 			cfe.printStackTrace();
 		}
 	}
@@ -35,7 +31,7 @@ public class DBManager {
 
 			return conn;
 		}catch (SQLException ex) {
-			log.error("DBManager:openConnection :: " + ex);            
+			System.out.println("DBManager:openConnection :: " + ex);
 		}
 
 		return conn;
@@ -51,7 +47,7 @@ public class DBManager {
 				conn.close();
 
 		} catch (SQLException ex) {
-			log.error("DBManager:cleanupCollection :: " + ex); 
+			System.out.println("DBManager:cleanupCollection :: " + ex); 
 		}
 
 	}
@@ -61,7 +57,7 @@ public class DBManager {
 			if(rs != null)
 				rs.close();
 		}catch(SQLException sqle){
-			log.error("DBManager:closeResultSet :: " + sqle); 
+			System.out.println("DBManager:closeResultSet :: " + sqle); 
 		}
 	}
 	

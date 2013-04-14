@@ -13,8 +13,6 @@ import java.util.Properties;
 
 import javax.servlet.ServletInputStream;
 
-import org.apache.log4j.Logger;
-
 
 public class Utils {
 	
@@ -31,9 +29,9 @@ public class Utils {
 
 	public static final Properties getProperties(Object object, String filename) throws IOException
 	{
-		getLogger().debug("Utils.getProperties() :: readfile " + propertiesFilePath + filename);
+		System.out.println("Utils.getProperties() :: readfile " + propertiesFilePath + filename);
 		InputStream inputStream  = object.getClass().getClassLoader().getResourceAsStream(propertiesFilePath + filename);
-		getLogger().debug("Utils.getProperties() :: Input steam is null ? " + (inputStream == null));
+		System.out.println("Utils.getProperties() :: Input steam is null ? " + (inputStream == null));
 		Properties properties = new Properties();
 		properties.load(inputStream);
 		return properties;
@@ -46,11 +44,6 @@ public class Utils {
 	public static final boolean isNullOrEmptyCollection(Collection coll){
 		return (coll == null || (coll.size() == 0));
 	}
-	
-	public static Logger getLogger(){
-		return Logger.getLogger("moojic_logger");
-	}
-
 	
 	public static String convertStreamToString(ServletInputStream inputStream){
 		if(inputStream == null)
