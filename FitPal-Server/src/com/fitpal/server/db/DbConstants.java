@@ -10,5 +10,4 @@ public class DbConstants {
 	public static final String USER = "root";
 	public static final String PASSWD = "sushil";
 	
-	
 }
