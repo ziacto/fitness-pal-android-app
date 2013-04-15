@@ -16,7 +16,6 @@ public class NewsFeedFragment extends BaseFragment {
 	private Handler mHandler;
 	
 	public NewsFeedFragment(){
-		System.out.println("inside search constructor");
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

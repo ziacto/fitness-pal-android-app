@@ -96,7 +96,7 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.menu_add_workout, menu);
 		menu.getItem(0).setOnMenuItemClickListener(new SaveListener());
-		
+
 		if("ADD".equals(mMode))
 			menu.getItem(1).setVisible(false);
 		if("EDIT".equals(mMode))

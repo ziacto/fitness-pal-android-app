@@ -16,7 +16,6 @@ public class ProfileFragment extends BaseFragment {
 	private Handler mHandler;
 	
 	public ProfileFragment(){
-		System.out.println("inside search constructor");
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

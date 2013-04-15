@@ -31,7 +31,6 @@ public class PlannerCalendarFragment extends BaseFragment {
 	
 	public PlannerCalendarFragment(){
 		random = new Random();
-		System.out.println("inside search constructor");
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

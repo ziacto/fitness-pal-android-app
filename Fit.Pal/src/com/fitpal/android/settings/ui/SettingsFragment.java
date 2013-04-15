@@ -16,7 +16,6 @@ public class SettingsFragment extends BaseFragment {
 	private Handler mHandler;
 	
 	public SettingsFragment(){
-		System.out.println("inside search constructor");
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
