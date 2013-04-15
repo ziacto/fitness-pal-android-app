@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Routine {
 
-	public String id;
+	public long id;
 	public String name;
 	public List<Workout> workoutList;
 }

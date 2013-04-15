@@ -4,4 +4,9 @@ public class Workout {
 
 	public String workoutBody;
 	public String exercise;
+	
+	@Override
+	public String toString(){
+		return exercise;
+	}
 }

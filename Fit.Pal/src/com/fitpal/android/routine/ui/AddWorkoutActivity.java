@@ -20,7 +20,7 @@ public class AddWorkoutActivity  extends SherlockFragmentActivity {
 	private Spinner mSpinnerExercises;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_workout_page);
 		mActivity = this;
@@ -49,9 +49,12 @@ public class AddWorkoutActivity  extends SherlockFragmentActivity {
 			}
 
 			public void onNothingSelected(AdapterView<?> parent) {
-				// Another interface callback
+
 			}
 
 		});
+		
 	}
+	
+	
 }

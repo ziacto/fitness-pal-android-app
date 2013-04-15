@@ -1,38 +1,56 @@
 package com.fitpal.android.routine.ui;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
+import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
+import com.fitpal.android.routine.entity.Routine;
 import com.fitpal.android.routine.entity.Workout;
+import com.fitpal.android.utils.AndroidUtils;
+import com.fitpal.android.utils.Utils;
 
 public class AddRoutineActivity  extends SherlockFragmentActivity {
 	
 	private Activity mActivity;
-	private List<Workout> mWorkoutList;
 	private ListView mListView;
 	private WorkoutAdapter mWorkoutAdapter;
+	private String mMode;
+	private Routine mRoutine;
+	private EditText etRoutineName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_routine_page);
 		mActivity = this;
-		
-		mWorkoutList = new ArrayList<Workout>();
 		mListView = (ListView)findViewById(R.id.lv_workouts);
-		mWorkoutAdapter = new WorkoutAdapter(mActivity, mWorkoutList);
-		mListView.setAdapter(mWorkoutAdapter);
-
+		mMode = getIntent().getStringExtra("MODE");
+		etRoutineName = (EditText)mActivity.findViewById(R.id.et_routine_name);
+		System.out.println("MOde : "  + mMode);
+		if("ADD".equals(mMode)){
+			mRoutine = new Routine();
+			mRoutine.workoutList = new ArrayList<Workout>();
+		}else{
+			mRoutine = AppInfo.routine;
+			AppInfo.routine = null;
+			mRoutine.workoutList = mRoutine.workoutList;
+			mWorkoutAdapter = new WorkoutAdapter(mActivity, mRoutine.workoutList);
+			mListView.setAdapter(mWorkoutAdapter);
+			etRoutineName.setText(mRoutine.name);
+		}
+		
 		View btnAddWorkout = findViewById(R.id.btn_add_workout);
 		btnAddWorkout.setOnClickListener(new View.OnClickListener() {
 			
@@ -46,12 +64,83 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 	
 	@Override
 	public void onResume(){
+		super.onResume();
+		
+		if(AppInfo.exerciseName == null)
+			return;
+		
 		Workout workout  = new Workout();
 		workout.workoutBody = AppInfo.workoutBody;
 		workout.exercise = AppInfo.exerciseName;
-		mWorkoutList.add(workout);
-		mWorkoutAdapter.notifyDataSetChanged();
-		super.onResume();
+		mRoutine.workoutList.add(workout);
+		System.out.println(mRoutine.workoutList);
+		AppInfo.workoutBody = null;
+		AppInfo.exerciseName = null;
+		
+		if(mWorkoutAdapter == null){
+			mWorkoutAdapter = new WorkoutAdapter(mActivity, mRoutine.workoutList);
+			mListView.setAdapter(mWorkoutAdapter);
+		}else{
+			mWorkoutAdapter.notifyDataSetChanged();
+		}
 	}
+	
+	@Override
+	public void onDestroy(){
+		mWorkoutAdapter = null;
+		super.onStop();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getSupportMenuInflater();
+		menuInflater.inflate(R.menu.menu_add_workout, menu);
+		menu.getItem(0).setOnMenuItemClickListener(new SaveListener());
+		
+		if("ADD".equals(mMode))
+			menu.getItem(1).setVisible(false);
+		if("EDIT".equals(mMode))
+			menu.getItem(1).setOnMenuItemClickListener(new DeleteListener());
+
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+    private class SaveListener implements MenuItem.OnMenuItemClickListener{
+
+		public boolean onMenuItemClick(MenuItem item) {
+			mRoutine.name = etRoutineName.getText().toString();
+			if(Utils.isNullOrEmptyStr(mRoutine.name)){
+				AndroidUtils.showToastNotification("Enter Routine Name", mActivity);
+			}else{
+				new Thread(){
+					public void run(){
+						if("ADD".equals(mMode))
+							RoutineDataFetcher.addRoutine(mRoutine);
+						else
+							RoutineDataFetcher.editRoutine(mRoutine);
+						finish();
+					}
+				}.start();
+				AndroidUtils.showToastNotification("Routine Added successfully", mActivity);
+			}
+			return false;
+		}
+    }
+
+    private class DeleteListener implements MenuItem.OnMenuItemClickListener{
+
+		public boolean onMenuItemClick(MenuItem item) {
+
+			new Thread(){
+				public void run(){
+					RoutineDataFetcher.deleteRoutine(mRoutine.id);
+				}
+			}.start();
+
+			AndroidUtils.showToastNotification("Routine Deleted", mActivity);
+			return false;
+		}
+    }
+
 
 }

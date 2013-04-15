@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.fitpal.android.R;
+import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.BaseFragment;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
 import com.fitpal.android.routine.entity.Routine;
@@ -45,11 +47,19 @@ public class MyRoutinesFragment extends BaseFragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(mActivity, AddRoutineActivity.class);
+				intent.putExtra("MODE", "ADD");
 				mActivity.startActivity(intent);
 			}
 		});
 
+		//new GetMyRoutinesTask().execute(null, null, null);
+	}
+	
+
+	@Override
+	public void onResume(){
 		new GetMyRoutinesTask().execute(null, null, null);
+		super.onResume();
 	}
 	
 /* End Of Action Mode class */
@@ -60,6 +70,7 @@ public class MyRoutinesFragment extends BaseFragment {
 		protected Void doInBackground(Void... params) {
 			// get daily tasks from Server
 			mRoutineList = RoutineDataFetcher.fetchRoutineList();
+			System.out.println("Routine List : " + mRoutineList.size());
 			return null;
 		}
 
@@ -68,16 +79,17 @@ public class MyRoutinesFragment extends BaseFragment {
 			mRoutineAdapter = new RoutineAdapter(mActivity, mRoutineList);
 			mListView.setAdapter(mRoutineAdapter);
 			
-			/*
 			mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-					mActionMode = startActionMode(new ItemSelectActionMode(mTaskList.get(position), position));
+					AppInfo.routine = mRoutineList.get(position);
+					Intent intent = new Intent(mActivity, AddRoutineActivity.class);
+					intent.putExtra("MODE", "EDIT");
+					mActivity.startActivity(intent);
 				}
 
 			});
-			*/
 		}
 
 	}

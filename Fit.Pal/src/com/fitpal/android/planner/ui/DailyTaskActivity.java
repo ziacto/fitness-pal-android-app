@@ -55,7 +55,6 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.menu_daily_task, menu);
-
 		menu.getItem(0).setOnMenuItemClickListener(new AddListener());
 		return super.onCreateOptionsMenu(menu);
 	}
