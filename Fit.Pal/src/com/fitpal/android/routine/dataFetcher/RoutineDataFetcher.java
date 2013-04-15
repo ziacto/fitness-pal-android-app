@@ -15,16 +15,6 @@ public class RoutineDataFetcher {
 		if(Utils.isNullOrEmptyCollection(mRoutineList))
 			mRoutineList = new ArrayList<Routine>();
 		
-	/*	List<Routine> routineList = new ArrayList<Routine>();
-		
-		Routine routine1 = new Routine();
-		routine1.name = "Morning";
-		routineList.add(routine1);
-		
-		Routine routine2 = new Routine();
-		routine2.name = "Evening";
-		routineList.add(routine2);
-		*/
 		return mRoutineList;
 	}
 	
