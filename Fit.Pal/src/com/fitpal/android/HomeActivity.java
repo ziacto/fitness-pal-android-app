@@ -7,10 +7,11 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.FragmentManager;
 import com.fitpal.android.utils.Utils;
 
-public class LauncherActivity extends SherlockFragmentActivity {
+public class HomeActivity extends SherlockFragmentActivity {
 
 	private Activity mActivity;
 	
@@ -18,6 +19,10 @@ public class LauncherActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = this;
+        
+        if(AppInfo.loginActivity != null){
+        	AppInfo.loginActivity.finish();
+        }
         setContentView(R.layout.activity_launcher);
         String defaultFragment = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
         FragmentManager.getInstance().launchFragment((FragmentActivity)mActivity, R.id.fragmentHolder, defaultFragment);

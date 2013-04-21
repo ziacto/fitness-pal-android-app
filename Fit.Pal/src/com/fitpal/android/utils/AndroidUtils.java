@@ -75,7 +75,7 @@ public class AndroidUtils {
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		activity.startActivity(intent);
 	}
-	
+
 	/*public static void launchMaps(final Activity activity, final String address){
 		String uri = String.format(Constants.MAPS_INTENT_QUERY, address);
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
