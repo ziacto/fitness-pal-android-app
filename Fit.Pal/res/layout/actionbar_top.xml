@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:gravity="right" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left" >
 
-<TextView 
-    android:id="@+id/action_bar_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="20dip"
-    android:textStyle="bold"
-    android:textColor="@color/white"
-    />
-<ImageButton
-    android:id="@+id/action_add_friend"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_add_friend"
-   />
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20dip"
+        android:paddingLeft="20dip"
+        android:layout_gravity="center_vertical"
+        android:textStyle="bold" />
 
-<ImageButton
-    android:id="@+id/action_add_routine"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_add"
-   />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right" >
+
+        <ImageButton
+            android:id="@+id/action_add_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_friend" />
+
+        <ImageButton
+            android:id="@+id/action_add_routine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add" />
+    </LinearLayout>
 
 </LinearLayout>
