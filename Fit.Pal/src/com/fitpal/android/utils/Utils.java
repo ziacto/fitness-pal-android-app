@@ -13,16 +13,16 @@ import java.util.Set;
 
 
 public class Utils {
-	
+
 	public static final boolean isNullOrEmptyStr(String str){
 		return (str==null || "".equals(str.trim()));
 	}
-	
+
 	public static final boolean isNullOrEmptyCollection(Collection coll){
 		return (coll == null || coll.size() == 0);
 	}
-	
-	
+
+
 	public static String convertStreamToString(InputStream inputStream){
 		if(inputStream == null)
 			return "";
@@ -38,10 +38,10 @@ public class Utils {
 			ioe.printStackTrace();
 			return null;
 		}
-		
+
 		return strVal;
 	}
-	
+
 	public static boolean isValidLong(String str){
 		try{
 			Long.parseLong(str);
@@ -50,29 +50,33 @@ public class Utils {
 			return false;
 		}
 	}
-	
+
 	public static List<String> convertSetToList(Set<String> set){
 		if(set == null)
 			return null;
-		
+
 		List<String> list = new ArrayList<String>();
-		
+
 		for(String str : set){
 			list.add(str);
 		}
-		
+
 		return list;
 	}
-	
+
 	public static String convertDateToString(Date date, String format){
 		if(date == null)
 			return null;
-		
+
 		try{
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
 			return sdf.format(date);
 		}catch(Exception e){
 			return null;
 		}
+	}
+
+	public  static String pad(int val) {
+		return val >= 10 ? String.valueOf(val) : "0" + String.valueOf(val); 
 	}
 }

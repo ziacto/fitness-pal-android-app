@@ -60,6 +60,10 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 	}
 
 
+	public void refresh(){
+		new GetDailyTaskListTask().execute(null, null, null);
+	}
+
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
@@ -72,8 +76,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 
 		public boolean onMenuItemClick(MenuItem item) {
 			
-			new AddRoutineDialog(mActivity, mRoutineList, mDate).show();
-			//AndroidUtils.showToastNotification("Add Button clicked", mActivity);
+			new AddRoutineDialog(DailyTaskActivity.this, mRoutineList, mDate).show();
 			return false;
 		}
     }
@@ -151,6 +154,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// get daily tasks from Server
 			mTaskList = PlannerDataFetcher.fetchTaskList(mDate);
+			System.out.println("Task List : " + mTaskList.size());
 			return null;
 		}
 

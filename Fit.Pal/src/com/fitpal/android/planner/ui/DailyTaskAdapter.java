@@ -51,18 +51,13 @@ public class DailyTaskAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		
 		final Task task = mTaskList.get(position);
-		
 		mView = convertView;
 		mView = layoutInflator.inflate(R.layout.daily_plan_row_layout, null);
 		TextView taskName = (TextView)mView.findViewById(R.id.tv_task_name);
 		taskName.setText(task.routine.name);
-		//TextView duration = (TextView)mView.findViewById(R.id.tv_task_duration);
-		//duration.setText(task.duration);
 		TextView time = (TextView)mView.findViewById(R.id.tv_task_time);
 		time.setText(task.startTime + " - " + task.endTime);
-		//ProgressDialogManager.hideProgressDialog(mActivity);
 		return mView;
 	}
 	

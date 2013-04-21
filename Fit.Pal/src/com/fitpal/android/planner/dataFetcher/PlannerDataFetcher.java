@@ -25,10 +25,13 @@ public class PlannerDataFetcher {
 		List<Task> taskList = plannerMap.get(date);
 		if(taskList == null){
 			taskList = new ArrayList<Task>();
+			System.out.println("creating new task list");
 		}
 
 		taskList.add(task);
 		plannerMap.put(date, taskList);
+		System.out.println("Date : " + date + "   task : " + task.startTime);
+		System.out.println("Map size : " + plannerMap.size());
 	}
 
 	public static boolean deleteTask(long taskId){

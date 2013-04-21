@@ -6,6 +6,7 @@ import com.fitpal.android.R;
 import com.fitpal.android.planner.dataFetcher.PlannerDataFetcher;
 import com.fitpal.android.planner.entity.Task;
 import com.fitpal.android.routine.entity.Routine;
+import com.fitpal.android.utils.Utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -19,14 +20,14 @@ import android.widget.TimePicker;
 
 public class AddRoutineDialog extends Dialog {
 
-	private Activity mActivity;
+	private DailyTaskActivity mActivity;
 	private List<Routine> mRoutineList;
 	private String mDate;
 	private int mPosition;
 	private String mStartTime;
 	private String mEndTime;
 
-	public AddRoutineDialog(Activity activity, List<Routine> routineList, String date) {
+	public AddRoutineDialog(DailyTaskActivity activity, List<Routine> routineList, String date) {
 		super(activity, com.actionbarsherlock.R.style.Theme_Sherlock_Dialog);
 
 		mActivity = activity;
@@ -70,7 +71,7 @@ public class AddRoutineDialog extends Dialog {
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 				String time = (hourOfDay / 12) > 1 ? "PM" : "AM";
-				mStartTime = hourOfDay % 12 + ":" + minute + ":" + time ;
+				mStartTime = Utils.pad(hourOfDay % 12) + ":" + Utils.pad(minute) + " " + time ;
 				
 			}
 		});
@@ -81,7 +82,7 @@ public class AddRoutineDialog extends Dialog {
 			@Override
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 				String time = (hourOfDay / 12) > 1 ? "PM" : "AM";
-				mEndTime = hourOfDay % 12 + ":" + minute + ":" + time ;
+				mEndTime = Utils.pad(hourOfDay % 12) + ":" + Utils.pad(minute) + " " + time ;
 				
 			}
 		});
@@ -114,6 +115,7 @@ public class AddRoutineDialog extends Dialog {
 						mActivity.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
+								mActivity.refresh();
 								AddRoutineDialog.this.dismiss();
 							}
 						});
