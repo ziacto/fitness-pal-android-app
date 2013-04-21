@@ -24,7 +24,7 @@ public class HomeActivity extends SherlockFragmentActivity {
         	AppInfo.loginActivity.finish();
         }
         setContentView(R.layout.activity_launcher);
-        String defaultFragment = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
+        String defaultFragment = "com.fitpal.android.planner.ui.PlannerCalendarFragment";
         FragmentManager.getInstance().launchFragment((FragmentActivity)mActivity, R.id.fragmentHolder, defaultFragment);
     }
 
@@ -42,16 +42,16 @@ public class HomeActivity extends SherlockFragmentActivity {
 		
 		String fragmentClass = null;
 		switch(item.getItemId()){
-			case R.id.menu_news_feed:
-				fragmentClass = "com.fitpal.android.news_feed.ui.NewsFeedFragment";
-			break;
-
-			case R.id.menu_workout_planner:
+			case R.id.menu_calendar:
 				fragmentClass = "com.fitpal.android.planner.ui.PlannerCalendarFragment";
 			break;
 
-			case R.id.menu_contacts:
+			case R.id.menu_workout_planner:
 				fragmentClass = "com.fitpal.android.routine.ui.MyRoutinesFragment";
+			break;
+
+			case R.id.menu_contacts:
+				fragmentClass = "com.fitpal.android.profile.ui.MyFriendsFragment";
 			break;
 
 			case R.id.menu_settings:

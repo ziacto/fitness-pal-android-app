@@ -9,9 +9,10 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
 import com.fitpal.android.common.AppInfo;
-import com.fitpal.android.utils.AndroidUtils;
+import com.fitpal.android.common.Constants;
+import com.fitpal.android.common.SharedPreferenceStore;
+import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,7 +61,6 @@ public class LoginActivity extends FragmentActivity{
         loginButton.setUserInfoChangedCallback(new LoginButton.UserInfoChangedCallback() {
             @Override
             public void onUserInfoFetched(GraphUser user) {
-            	System.out.println("user info fetched");
             	LoginActivity.this.user = user;
                 updateUI();
                 // It's possible that we were waiting for this.user to be populated in order to post a
@@ -122,15 +122,23 @@ public class LoginActivity extends FragmentActivity{
         } else if (state == SessionState.OPENED_TOKEN_UPDATED) {
             //handlePendingAction();
         }
-        System.out.println("Inside onsessionstatechanged");
         updateUI();
     }
 
     private void updateUI() {
         Session session = Session.getActiveSession();
 
-        System.out.println("session active : " + session.isOpened());
         if(session != null && session.isOpened()){
+        	
+        	if(user != null){
+        		SharedPreferenceStore.storeValue(Constants.KEY_USERNAME, user.getUsername(), LoginActivity.this);
+            	new Thread(){
+            		public void run(){
+            			ProfileDataFetcher.addNewUser(user.getUsername());
+            		}
+            	}.start();
+        	}
+
         	AppInfo.loginActivity = this;
         	Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         	startActivity(intent);

@@ -4,7 +4,7 @@
     <string name="app_name">Fit.Pal</string>
     
     <!-- Menu -->
-    <string name="menu_news_feed">News Feed</string>
+    <string name="menu_calendar">Planner</string>
     <string name="menu_workout_planner">Planner</string>
     <string name="menu_contacts">Contacts</string>
     <string name="menu_settings">Settings</string>
@@ -29,6 +29,16 @@
                 <item>Shoulder</item>
                 <item>Biceps</item>
                 <item>Stretching</item>
+    </string-array>
+    
+    <string-array name="listArray">
+                <item>Item1</item>
+                <item>Item2</item>
+    </string-array>
+    
+    <string-array name="listValues">
+                <item>Val1</item>
+                <item>Val2</item>
     </string-array>
     
     <!-- Facebook Strings -->

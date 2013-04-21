@@ -4,11 +4,87 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView 
-        android:layout_width="match_parent"
-        android:textColor="@color/white"
-    	android:layout_height="100dip"
-    	android:text="Settings"
+    <TextView
+        android:text="Settings" 
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_2"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:padding="12dip"
         />
+
+    <LinearLayout
+        android:id="@+id/btn_view_profile" 
+        android:layout_width="fill_parent"
+    	android:layout_height="50dip"
+    	android:paddingLeft="10dip"
+    	android:paddingRight="10dip"
+    	android:layout_marginBottom="5dip"
+    	android:background="@color/white"
+    	android:weightSum="1">
+    	
+        <TextView
+	        android:text="Profile"
+	        android:layout_weight="0.8"
+			android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:textSize="18dp"
+	        android:gravity="center_vertical"
+	        android:textStyle="bold"
+	        android:textColor="@color/black"
+	        android:padding="12dip"
+	        />
+        
+        <TextView
+	        android:text=">"
+	        android:layout_weight="0.2"
+			android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:textSize="18dp"
+	        android:gravity="center"
+	        android:textStyle="bold"
+	        android:textColor="@color/black"
+	        android:padding="12dip"
+	        />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/btn_logout"
+        android:layout_width="fill_parent"
+    	android:layout_height="50dip"
+    	android:paddingLeft="10dip"
+    	android:paddingRight="10dip"
+    	android:layout_marginBottom="5dip"
+    	android:background="@color/white"
+    	android:weightSum="1">
+    	
+        <TextView
+	        android:text="Logout"
+	        android:layout_weight="0.8"
+			android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:textSize="18dp"
+	        android:gravity="center_vertical"
+	        android:textStyle="bold"
+	        android:textColor="@color/black"
+	        android:padding="12dip"
+	        />
+        
+        <TextView
+	        android:text=">"
+	        android:layout_weight="0.2"
+			android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:textSize="18dp"
+	        android:gravity="center"
+	        android:textStyle="bold"
+	        android:textColor="@color/black"
+	        android:padding="12dip"
+	        />
+    </LinearLayout>
+    
 
 </LinearLayout>

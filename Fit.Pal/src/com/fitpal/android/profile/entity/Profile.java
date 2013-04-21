@@ -3,13 +3,11 @@ package com.fitpal.android.profile.entity;
 public class Profile {
 
 	public String name;
-	public String displayName;
-	public String userId;
+	public String userName;
 	public String statusMessage;
 	public String gender;
-	public float age;
+	public String dob;
 	public String emailAddrress;
-	public float weight;
-	public float height;
-	public String imageUrl;
+	public String weight;
+	public String height;
 }
