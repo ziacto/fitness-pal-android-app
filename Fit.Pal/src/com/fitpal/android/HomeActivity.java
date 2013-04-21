@@ -15,6 +15,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.BaseFragment;
 import com.fitpal.android.common.FragmentManager;
+import com.fitpal.android.profile.ui.MyFriendsFragment;
 import com.fitpal.android.utils.Utils;
 
 public class HomeActivity extends SherlockFragmentActivity {
@@ -114,5 +115,16 @@ public class HomeActivity extends SherlockFragmentActivity {
 	public void onStop(){
 		FragmentManager.getInstance().cleanupData();
 		super.onPause();
+	}
+
+	@Override
+	public void onBackPressed(){
+		Fragment currentFragment = FragmentManager.getInstance().getCurrentFragment();
+		if(currentFragment instanceof MyFriendsFragment && AppInfo.addPanelShown){
+			MyFriendsFragment friendsFragment = (MyFriendsFragment) currentFragment;
+			friendsFragment.fadeOutAddFriendsPanel();
+		}else{
+			super.onBackPressed();
+		}
 	}
 }

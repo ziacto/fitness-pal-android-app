@@ -3,24 +3,24 @@ package com.fitpal.android.profile.ui;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.fitpal.android.R;
+import com.fitpal.android.common.AnimUtils;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.BaseFragment;
 import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
 import com.fitpal.android.profile.entity.Profile;
-import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
-import com.fitpal.android.routine.entity.Routine;
 
 public class MyFriendsFragment extends BaseFragment {
 
@@ -28,10 +28,11 @@ public class MyFriendsFragment extends BaseFragment {
 	private List<Profile> mFriendsList;
 	private ListView mListView;
 	private FriendsAdapter mFriendsAdapter;
-	
+	private LinearLayout mAddFriendPanel;
+
 	public MyFriendsFragment(){
 	}
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -46,10 +47,32 @@ public class MyFriendsFragment extends BaseFragment {
 		mListView = (ListView)view.findViewById(R.id.lv_friends);
 
 	}
-	
+
 	@Override
 	public void addClicked(){
+		mAddFriendPanel = (LinearLayout)mActivity.findViewById(R.id.add_friend_layoout);
+		AnimUtils.setLayoutAnim_slidedownfromtop(mAddFriendPanel, mActivity);
+		AppInfo.addPanelShown = true;
+	}
+
+	public void fadeOutAddFriendsPanel(){
+		if(mAddFriendPanel == null)
+			return;
 		
+		Animation animation = AnimUtils.runFadeOutAnimationOn(mActivity, mAddFriendPanel);
+
+		animation.setAnimationListener(new Animation.AnimationListener() {
+			public void onAnimationStart(Animation animation) {
+			}
+			public void onAnimationEnd(Animation animation) {
+				mAddFriendPanel.setVisibility(View.GONE);
+				mAddFriendPanel = null;
+				AppInfo.addPanelShown = false;
+			}
+			public void onAnimationRepeat(Animation animation) {
+			}
+		});
+
 	}
 
 	@Override
@@ -57,9 +80,9 @@ public class MyFriendsFragment extends BaseFragment {
 		new GetMyFriendsTask().execute(null, null, null);
 		super.onResume();
 	}
-	
-/* End Of Action Mode class */
-	
+
+	/* End Of Action Mode class */
+
 	private class GetMyFriendsTask extends AsyncTask<Void, Void, Void>{
 
 		@Override
@@ -74,7 +97,7 @@ public class MyFriendsFragment extends BaseFragment {
 		protected void onPostExecute(Void param) {
 			mFriendsAdapter = new FriendsAdapter(mActivity, mFriendsList);
 			mListView.setAdapter(mFriendsAdapter);
-			
+
 			mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 				@Override

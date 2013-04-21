@@ -9,5 +9,7 @@ public class AppInfo {
 	public static String exerciseName;
 	public static Routine routine;
 	public static LoginActivity loginActivity;
+	public static boolean addPanelShown = false;
+
 }
 
