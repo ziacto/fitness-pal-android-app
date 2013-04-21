@@ -4,28 +4,28 @@
         android:id="@+id/menu_calendar"
         android:title="@string/menu_calendar"
         android:icon="@drawable/ic_menu_calendar"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
      />
      
      <item
         android:id="@+id/menu_workout_planner"
         android:title="@string/menu_workout_planner"
         android:icon="@drawable/ic_menu_planner"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
      />
      
      <item
         android:id="@+id/menu_contacts"
         android:title="@string/menu_contacts"
         android:icon="@drawable/ic_menu_contacts"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
      />
      
      <item
         android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
         android:icon="@drawable/ic_menu_settings"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
      />
 
 </menu>
