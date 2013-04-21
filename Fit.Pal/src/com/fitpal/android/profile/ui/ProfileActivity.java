@@ -71,7 +71,7 @@ public class ProfileActivity extends SherlockFragmentActivity {
 				new Thread(){
 					public void run(){
 						mProfile.dob = dob.getText().toString();
-						mProfile.emailAddrress = email.getText().toString();
+						mProfile.email = email.getText().toString();
 						mProfile.weight = weight.getText().toString();
 						mProfile.height = height.getText().toString();
 						mProfile.height = height.getText().toString();
@@ -131,7 +131,7 @@ public class ProfileActivity extends SherlockFragmentActivity {
 			if(mProfile == null)
 				return;
 			
-			email.setText(mProfile.emailAddrress);
+			email.setText(mProfile.email);
 			height.setText(mProfile.height);
 			weight.setText(mProfile.weight);
 			dob.setText(mProfile.dob);

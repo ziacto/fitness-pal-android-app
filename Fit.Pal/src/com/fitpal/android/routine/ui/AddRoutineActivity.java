@@ -15,6 +15,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
+import com.fitpal.android.common.Constants;
+import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
 import com.fitpal.android.routine.entity.Routine;
 import com.fitpal.android.routine.entity.Workout;
@@ -128,6 +130,7 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 			}else{
 				new Thread(){
 					public void run(){
+						mRoutine.userName = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity); 
 						if("ADD".equals(mMode))
 							RoutineDataFetcher.addRoutine(mRoutine);
 						else

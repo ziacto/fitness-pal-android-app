@@ -14,8 +14,8 @@ public class RoutineDataFetcher {
 	private static Gson gson = new Gson();
 	
 	private static final String GET_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/get-routines?username=";
-	private static final String ADD_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/add-routine/";
-	private static final String EDIT_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/edit-routine/";
+	private static final String ADD_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/add-routine";
+	private static final String EDIT_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/edit-routine";
 	private static final String DELETE_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/delete-routine?id=";
 	private static final String SHARE_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/share-routine?id=";
 	
@@ -56,7 +56,6 @@ public class RoutineDataFetcher {
 	}
 	
 	public static void addRoutine(Routine routine){
-		List<Routine> routineList;
 		try{
 			String postPayload = gson.toJson(routine);
 			DataCommunicator.sendPostDataToServer(ADD_ROUTINE_URL, postPayload);

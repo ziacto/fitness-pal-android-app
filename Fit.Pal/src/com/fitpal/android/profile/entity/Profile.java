@@ -7,7 +7,7 @@ public class Profile {
 	public String statusMessage;
 	public String gender;
 	public String dob;
-	public String emailAddrress;
+	public String email;
 	public String weight;
 	public String height;
 }

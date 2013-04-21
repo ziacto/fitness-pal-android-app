@@ -41,6 +41,7 @@ public class DataCommunicator {
 
 			// Response....
 			int responseCode = urlConnection.getResponseCode();
+			System.out.println("Response code : " + responseCode);
 
 			if (responseCode == HttpURLConnection.HTTP_OK) {
 				inputStream = urlConnection.getInputStream();
