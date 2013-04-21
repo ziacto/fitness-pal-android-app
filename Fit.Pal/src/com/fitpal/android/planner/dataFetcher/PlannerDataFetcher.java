@@ -1,7 +1,9 @@
 package com.fitpal.android.planner.dataFetcher;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fitpal.android.planner.entity.Task;
 
@@ -9,31 +11,29 @@ public class PlannerDataFetcher {
 
 	//private static Gson gson = new Gson();
 	
+	private static Map<String,List<Task>> plannerMap = new HashMap<String, List<Task>>();
+
 	public static List<Task> fetchTaskList(String date){
-		List<Task> taskList = new ArrayList<Task>();
-		Task task = new Task();
-		task.name = "Running";
-		task.startTime = "12:30pm";
-		task.endTime = "2:30pm";
-		task.duration = "2 hours";
-		taskList.add(task);
-		
-		Task task2 = new Task();
-		task2.name = "Push Ups";
-		task2.startTime = "2:45pm";
-		task2.endTime = "3:15pm";
-		task2.duration = "30 minutes";
-		taskList.add(task2);
-		
+		List<Task> taskList = plannerMap.get(date);
+		if(taskList == null){
+			taskList = new ArrayList<Task>();
+		}
 		return taskList;
 	}
-	
-	public static boolean deleteTask(String taskId){
-		return true;
+
+	public static void addRoutineToDay(Task task, String date){
+		List<Task> taskList = plannerMap.get(date);
+		if(taskList == null){
+			taskList = new ArrayList<Task>();
+		}
+
+		taskList.add(task);
+		plannerMap.put(date, taskList);
 	}
-	
-	public static boolean addTask(Task task){
+
+	public static boolean deleteTask(long taskId){
 		
 		return true;
 	}
+	
 }

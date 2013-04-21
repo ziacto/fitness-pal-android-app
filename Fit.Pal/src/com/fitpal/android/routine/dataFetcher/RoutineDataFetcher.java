@@ -8,17 +8,31 @@ import com.fitpal.android.utils.Utils;
 
 public class RoutineDataFetcher {
 
-	//private static Gson gson = new Gson();
 	private static List<Routine> mRoutineList;
 	
 	public static List<Routine> fetchRoutineList(){
 		if(Utils.isNullOrEmptyCollection(mRoutineList))
 			mRoutineList = new ArrayList<Routine>();
-		
+
 		return mRoutineList;
 	}
-	
+
 	public static boolean deleteRoutine(long routineId){
+		if(Utils.isNullOrEmptyCollection(mRoutineList))
+			return false;
+
+		boolean isDeleted = false;
+		for(int count = 0; count < mRoutineList.size() ; count++){
+			if(mRoutineList.get(count).id == routineId){
+				mRoutineList.remove(count);
+				isDeleted = true;
+				break;
+			}
+		}
+		return isDeleted;
+	}
+	
+	public static boolean shareRoutine(long routineId){
 		return true;
 	}
 	

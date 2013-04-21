@@ -51,6 +51,7 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 			etRoutineName.setText(mRoutine.name);
 		}
 		
+
 		View btnAddWorkout = findViewById(R.id.btn_add_workout);
 		btnAddWorkout.setOnClickListener(new View.OnClickListener() {
 			
@@ -60,6 +61,11 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 				mActivity.startActivity(intent);
 			}
 		});
+
+		if("VIEW".equals(mMode)){
+			btnAddWorkout.setVisibility(View.INVISIBLE);
+		}
+
 	}
 	
 	@Override
@@ -96,11 +102,19 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.menu_add_workout, menu);
 		menu.getItem(0).setOnMenuItemClickListener(new SaveListener());
+		menu.getItem(1).setOnMenuItemClickListener(new DeleteListener());
+		menu.getItem(2).setOnMenuItemClickListener(new ShareListener());
 
-		if("ADD".equals(mMode))
+		if("ADD".equals(mMode)){
 			menu.getItem(1).setVisible(false);
-		if("EDIT".equals(mMode))
+			menu.getItem(2).setVisible(false);
+		}else if("EDIT".equals(mMode)){
 			menu.getItem(1).setOnMenuItemClickListener(new DeleteListener());
+		}else if("VIEW".equals(mMode)){
+			menu.getItem(0).setVisible(false);
+			menu.getItem(1).setVisible(false);
+			menu.getItem(2).setVisible(false);
+		}
 
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -127,7 +141,7 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 		}
     }
 
-    private class DeleteListener implements MenuItem.OnMenuItemClickListener{
+    private class DeleteListener implements MenuItem.OnMenuItemClickListener{	
 
 		public boolean onMenuItemClick(MenuItem item) {
 
@@ -138,9 +152,24 @@ public class AddRoutineActivity  extends SherlockFragmentActivity {
 			}.start();
 
 			AndroidUtils.showToastNotification("Routine Deleted", mActivity);
+			finish();
 			return false;
 		}
     }
 
+    private class ShareListener implements MenuItem.OnMenuItemClickListener{
+
+		public boolean onMenuItemClick(MenuItem item) {
+
+			new Thread(){
+				public void run(){
+					RoutineDataFetcher.shareRoutine(mRoutine.id);
+				}
+			}.start();
+
+			AndroidUtils.showToastNotification("Routine Shared", mActivity);
+			return false;
+		}
+    }
 
 }

@@ -19,6 +19,8 @@ import com.fitpal.android.R;
 import com.fitpal.android.common.Constants;
 import com.fitpal.android.planner.dataFetcher.PlannerDataFetcher;
 import com.fitpal.android.planner.entity.Task;
+import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
+import com.fitpal.android.routine.entity.Routine;
 import com.fitpal.android.utils.AndroidUtils;
 
 public class DailyTaskActivity extends SherlockFragmentActivity {
@@ -29,6 +31,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 	private ListView mLvDailyTasks;
 	private List<Task> mTaskList;
 	private DailyTaskAdapter mTaskAdapter;
+	private List<Routine> mRoutineList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,14 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		
 		TextView date = (TextView)findViewById(R.id.tv_date);
 		date.setText(mDate);
-
+		
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
 		new GetDailyTaskListTask().execute(null, null, null);
+		new GetAllRoutinesTask().execute(null, null, null);
 	}
 
 
@@ -62,7 +71,9 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
     private class AddListener implements MenuItem.OnMenuItemClickListener{
 
 		public boolean onMenuItemClick(MenuItem item) {
-			AndroidUtils.showToastNotification("Add Button clicked", mActivity);
+			
+			new AddRoutineDialog(mActivity, mRoutineList, mDate).show();
+			//AndroidUtils.showToastNotification("Add Button clicked", mActivity);
 			return false;
 		}
     }
@@ -119,6 +130,21 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 	
 	/* End Of Action Mode class */
 	
+	private class GetAllRoutinesTask extends AsyncTask<Void, Void, Void>{
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// get daily tasks from Server
+			mRoutineList = RoutineDataFetcher.fetchRoutineList();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void param) {
+			
+		}
+	}
+	
 	private class GetDailyTaskListTask extends AsyncTask<Void, Void, Void>{
 
 		@Override
@@ -144,15 +170,15 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 
 	}
 	
-	private class DeleteTask extends AsyncTask<String, Void, Void>{
+	private class DeleteTask extends AsyncTask<Long, Void, Void>{
 
 		boolean success = false;
 		@Override
-		protected Void doInBackground(String... params) {
+		protected Void doInBackground(Long... params) {
 			if(params == null || params.length < 1)
 				return null;
 			
-			String taskId = params[0]; 
+			long taskId = params[0]; 
 			success = PlannerDataFetcher.deleteTask(taskId);
 			return null;
 		}
