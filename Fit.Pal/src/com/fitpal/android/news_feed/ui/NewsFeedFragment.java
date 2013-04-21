@@ -31,4 +31,9 @@ public class NewsFeedFragment extends BaseFragment {
 		mActivity = getActivity();
 		mHandler = new Handler();
 	}
+	
+	@Override
+	public void addClicked(){
+		
+	}
 }

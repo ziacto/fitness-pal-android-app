@@ -47,4 +47,9 @@ public class SettingsFragment extends BaseFragment {
 		});
 		
 	}
+	
+	@Override
+	public void addClicked(){
+		
+	}
 }

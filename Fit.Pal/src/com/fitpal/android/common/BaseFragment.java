@@ -6,7 +6,7 @@ import android.view.View;
 
 public abstract class BaseFragment extends Fragment{
 
-	//public abstract void refreshData(boolean fetchFromServer);
+	public abstract void addClicked();
 	protected abstract void initializeUI(View view);
 	
 }

@@ -79,6 +79,11 @@ public class PlannerCalendarFragment extends BaseFragment {
 		t.commit();
 	}
 
+	@Override
+	public void addClicked(){
+		
+	}
+	
 	private class GetDaySummary extends AsyncTask<String, Void, Void>{
 
 		private List<Task> mTaskList;

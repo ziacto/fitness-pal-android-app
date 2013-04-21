@@ -33,6 +33,13 @@ public class FragmentManager {
 		mFragMap.clear();
 	}
 
+	public Fragment getCurrentFragment(){
+		if(mLastFragmentId != null)
+			return mFragMap.get(mLastFragmentId) ;
+		else
+			return null;
+	}
+
 	public void launchFragment(FragmentActivity mActivity, int containerId, String newFragmentClass){
 		if(newFragmentClass.equals(mLastFragmentId)){
 			return;
@@ -64,4 +71,7 @@ public class FragmentManager {
 		mActivity.getSupportFragmentManager().executePendingTransactions();
 	}
 	
+	public void addFragmentToMap(Fragment fragment, String fragmentClass){
+		mFragMap.put(fragmentClass, fragment);
+	}
 }

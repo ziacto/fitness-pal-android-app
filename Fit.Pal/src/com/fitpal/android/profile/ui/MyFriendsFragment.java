@@ -43,20 +43,14 @@ public class MyFriendsFragment extends BaseFragment {
 
 	protected void initializeUI(View view){
 		mActivity = getActivity();
-		mListView = (ListView)view.findViewById(R.id.lv_routines);
-		View addRoutine = view.findViewById(R.id.btn_add_friend);
-		addRoutine.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//Intent intent = new Intent(mActivity, AddRoutineActivity.class);
-				//intent.putExtra("MODE", "ADD");
-				//mActivity.startActivity(intent);
-			}
-		});
+		mListView = (ListView)view.findViewById(R.id.lv_friends);
 
 	}
 	
+	@Override
+	public void addClicked(){
+		
+	}
 
 	@Override
 	public void onResume(){

@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.BaseFragment;
+import com.fitpal.android.common.FragmentManager;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
 import com.fitpal.android.routine.entity.Routine;
 
@@ -26,7 +27,6 @@ public class MyRoutinesFragment extends BaseFragment {
 	private RoutineAdapter mRoutineAdapter;
 	
 	public MyRoutinesFragment(){
-		System.out.println("inside search constructor");
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,24 +41,21 @@ public class MyRoutinesFragment extends BaseFragment {
 	protected void initializeUI(View view){
 		mActivity = getActivity();
 		mListView = (ListView)view.findViewById(R.id.lv_routines);
-		View addRoutine = view.findViewById(R.id.btn_add_routine);
-		addRoutine.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(mActivity, AddRoutineActivity.class);
-				intent.putExtra("MODE", "ADD");
-				mActivity.startActivity(intent);
-			}
-		});
-
-		//new GetMyRoutinesTask().execute(null, null, null);
 	}
 	
 
 	@Override
+	public void addClicked(){
+		System.out.println("inside Myroutines clicked");
+		Intent intent = new Intent(mActivity, AddRoutineActivity.class);
+		intent.putExtra("MODE", "ADD");
+		mActivity.startActivity(intent);
+	}
+	
+	@Override
 	public void onResume(){
 		new GetMyRoutinesTask().execute(null, null, null);
+		FragmentManager.getInstance().addFragmentToMap(this, "com.fitpal.android.routine.ui.MyRoutinesFragment" );
 		super.onResume();
 	}
 	
