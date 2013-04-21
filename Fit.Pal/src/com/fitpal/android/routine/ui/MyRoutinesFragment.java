@@ -15,7 +15,9 @@ import android.widget.ListView;
 import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.BaseFragment;
+import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.FragmentManager;
+import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
 import com.fitpal.android.routine.entity.Routine;
 
@@ -66,7 +68,8 @@ public class MyRoutinesFragment extends BaseFragment {
 		@Override
 		protected Void doInBackground(Void... params) {
 			// get daily tasks from Server
-			mRoutineList = RoutineDataFetcher.fetchRoutineList();
+			String username = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity);
+			mRoutineList = RoutineDataFetcher.fetchRoutineList(username);
 			System.out.println("Routine List : " + mRoutineList.size());
 			return null;
 		}

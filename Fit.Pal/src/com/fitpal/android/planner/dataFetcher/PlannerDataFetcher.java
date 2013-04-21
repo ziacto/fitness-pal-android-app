@@ -5,38 +5,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fitpal.android.communication.DataCommunicator;
 import com.fitpal.android.planner.entity.Task;
+import com.fitpal.android.planner.entity.TaskResponse;
+import com.fitpal.android.routine.entity.Routine;
+import com.fitpal.android.routine.entity.RoutineResponse;
+import com.fitpal.android.utils.Utils;
+import com.google.gson.Gson;
 
 public class PlannerDataFetcher {
 
-	//private static Gson gson = new Gson();
+	private static Gson gson = new Gson();
+	private static final String GET_TASL_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/get-tasks?username=%s&date=%s";
+	private static final String ADD_TASK_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/add-task";
 	
-	private static Map<String,List<Task>> plannerMap = new HashMap<String, List<Task>>();
-
-	public static List<Task> fetchTaskList(String date){
-		List<Task> taskList = plannerMap.get(date);
-		if(taskList == null){
+	public static List<Task> fetchTaskList(String userName, String date){
+		List<Task> taskList = null;
+		try{
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(String.format(GET_TASL_URL,userName, date)));
+			if(!Utils.isNullOrEmptyStr(response)){
+				TaskResponse taskResp = gson.fromJson(response, TaskResponse.class);
+				if(taskResp != null)
+					taskList = taskResp.list;
+				else
+					taskList = new ArrayList<Task>();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 			taskList = new ArrayList<Task>();
 		}
 		return taskList;
 	}
 
 	public static void addRoutineToDay(Task task, String date){
-		List<Task> taskList = plannerMap.get(date);
-		if(taskList == null){
-			taskList = new ArrayList<Task>();
-			System.out.println("creating new task list");
+		try{
+			String postPayload = gson.toJson(task);
+			DataCommunicator.sendPostDataToServer(ADD_TASK_URL, postPayload);
+		}catch(Exception e){
+			System.out.println(e);
 		}
-
-		taskList.add(task);
-		plannerMap.put(date, taskList);
-		System.out.println("Date : " + date + "   task : " + task.startTime);
-		System.out.println("Map size : " + plannerMap.size());
 	}
 
-	public static boolean deleteTask(long taskId){
+	public static void deleteTask(long taskId){
 		
-		return true;
 	}
 	
 }

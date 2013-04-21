@@ -17,6 +17,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.fitpal.android.R;
 import com.fitpal.android.common.Constants;
+import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.planner.dataFetcher.PlannerDataFetcher;
 import com.fitpal.android.planner.entity.Task;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
@@ -138,7 +139,8 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			// get daily tasks from Server
-			mRoutineList = RoutineDataFetcher.fetchRoutineList();
+			String username = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity);
+			mRoutineList = RoutineDataFetcher.fetchRoutineList(username);
 			return null;
 		}
 
@@ -153,7 +155,8 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			// get daily tasks from Server
-			mTaskList = PlannerDataFetcher.fetchTaskList(mDate);
+			String userName = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity);
+			mTaskList = PlannerDataFetcher.fetchTaskList(userName, mDate);
 			System.out.println("Task List : " + mTaskList.size());
 			return null;
 		}
@@ -183,7 +186,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 				return null;
 			
 			long taskId = params[0]; 
-			success = PlannerDataFetcher.deleteTask(taskId);
+			PlannerDataFetcher.deleteTask(taskId);
 			return null;
 		}
 

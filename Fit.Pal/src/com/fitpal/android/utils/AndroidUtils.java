@@ -4,16 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,4 +91,12 @@ public class AndroidUtils {
 		}
 		return drawable;
 	}
+	
+	public static void showAlert(Activity activity, String title, String message) {
+        new AlertDialog.Builder(activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Ok", null)
+                .show();
+    }
 }

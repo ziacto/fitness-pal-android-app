@@ -3,26 +3,42 @@ package com.fitpal.android.profile.dataFetcher;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fitpal.android.communication.DataCommunicator;
 import com.fitpal.android.profile.entity.Profile;
+import com.fitpal.android.routine.entity.Routine;
+import com.fitpal.android.routine.entity.RoutineResponse;
+import com.fitpal.android.utils.Utils;
+import com.google.gson.Gson;
 
 public class ProfileDataFetcher {
 
-	//private static Gson gson = new Gson();
+	private static Gson gson = new Gson();
+	private static final String GET_USER_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/get-user?username=";
+	private static final String ADD_USER_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/add-user/";
 	
 	public static Profile fetchProfileInfo(String userName){
-		Profile profile = new Profile();
-		profile.dob = "27 March 1987";
-		profile.name = "Sushil";
-		profile.weight = "136 lb";
-		profile.height = "175cms";
-		profile.gender="Male";
-		profile.statusMessage="Life is a mess";
-
+		Profile profile = null;
+		try{
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_USER_URL + userName));
+			if(!Utils.isNullOrEmptyStr(response)){
+				profile = gson.fromJson(response, Profile.class);
+				if(profile == null)
+					profile = new Profile();
+			}
+		}catch(Exception e){
+			System.out.println(e);
+			profile = new Profile();
+		}
 		return profile;
 	}
 	
-	public static void addNewUser(String username){
-		
+	public static void addNewUser(Profile profile){
+		try{
+			String payload = gson.toJson(profile);
+			DataCommunicator.sendPostDataToServer(ADD_USER_URL, payload);
+		}catch(Exception e){
+			System.out.println(e);
+		}
 	}
 	
 	public static void updateProfile(Profile profile){

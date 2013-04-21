@@ -19,8 +19,7 @@ import android.util.Log;
 
 public class DataCommunicator {
 
-	public static final String SERVER_BASE_ADDRESS = "http://10.137.16.35:9090/WarOfTheWorlds/" ;
-	//public static final String SERVER_BASE_ADDRESS = "http://192.168.56.1:8080/WarOfTheWorlds/" ;
+	public static final String SERVER_BASE_ADDRESS = "http://192.168.1.10:9090/FitPal-Server/" ;
 
 	private static final int TIMEOUT = 120000;
 	

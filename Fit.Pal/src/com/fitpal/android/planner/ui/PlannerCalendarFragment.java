@@ -24,6 +24,7 @@ import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.BaseFragment;
 import com.fitpal.android.common.Constants;
+import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.planner.dataFetcher.PlannerDataFetcher;
 import com.fitpal.android.planner.entity.Task;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
@@ -92,7 +93,8 @@ public class PlannerCalendarFragment extends BaseFragment {
 		@Override
 		protected Void doInBackground(String... date) {
 			mDate = date[0];
-			mTaskList = PlannerDataFetcher.fetchTaskList(mDate);
+			String userName = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity);
+			mTaskList = PlannerDataFetcher.fetchTaskList(userName, mDate);
 			System.out.println("Task List : " +  (mTaskList == null? " null" : mTaskList.size()));
 			return null;
 		}

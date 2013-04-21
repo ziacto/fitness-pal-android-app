@@ -12,6 +12,7 @@ import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
+import com.fitpal.android.profile.entity.Profile;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -134,7 +135,10 @@ public class LoginActivity extends FragmentActivity{
         		SharedPreferenceStore.storeValue(Constants.KEY_USERNAME, user.getUsername(), LoginActivity.this);
             	new Thread(){
             		public void run(){
-            			ProfileDataFetcher.addNewUser(user.getUsername());
+            			Profile profile = new Profile();
+            			profile.userName = user.getUsername();
+            			profile.name = user.getName();
+            			ProfileDataFetcher.addNewUser(profile);
             		}
             	}.start();
         	}

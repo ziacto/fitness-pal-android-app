@@ -6,5 +6,6 @@ public class Routine {
 
 	public long id;
 	public String name;
+	public String userName;
 	public List<Workout> workoutList;
 }
