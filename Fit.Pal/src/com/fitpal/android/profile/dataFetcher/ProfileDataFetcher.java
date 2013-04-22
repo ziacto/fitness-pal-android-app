@@ -51,7 +51,18 @@ public class ProfileDataFetcher {
 	
 	public static List<Profile> getAllFriends(String username){
 		List<Profile> profileList = new ArrayList<Profile>();
-		
+		profileList.add(new Profile("Hrishikesh Sawle","745668977"));
+		profileList.add(new Profile("Hetal Doshi","614822488"));
+		profileList.add(new Profile("Aarti Sawant","100000910989023"));
+		profileList.add(new Profile("Hrishikesh Deshmukh","100001045971471"));
+		profileList.add(new Profile("Hardik Gogri","100000606131285"));
+		profileList.add(new Profile("Ujas Doshi","100000544153911"));
+		profileList.add(new Profile("Aakansha Singh","705717202"));
+		profileList.add(new Profile("Aakash Shah","516150682"));
+		profileList.add(new Profile("Hitesh Tanwani","710675906"));
+		profileList.add(new Profile("Jay Bharuka","100000870455298"));
+		profileList.add(new Profile("Farhadnawaz Shaikh","100002315388212"));
+		profileList.add(new Profile("Abhijeet Verma","1348363668"));
 		return profileList;
 	}
 	

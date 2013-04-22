@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal"
+    android:background="@color/light_list_background" >
     
     <TextView 
         android:id="@+id/tv_user_name"
@@ -12,6 +13,7 @@
         android:textSize="25dp"
         android:paddingTop="5dip"
         android:paddingLeft="20dip"
+        android:background="@color/light_text_main"
         />
 
 </LinearLayout>

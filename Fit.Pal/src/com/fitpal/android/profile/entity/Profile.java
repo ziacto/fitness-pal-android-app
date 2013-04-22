@@ -12,4 +12,14 @@ public class Profile {
 	public String height;
 	public double latitude;
 	public double longitude;
+	public String facebookId;
+	
+	public Profile(){
+		
+	}
+	
+	public Profile(String name, String id){
+		this.displayName = name;
+		this.facebookId = id;
+	}
 }

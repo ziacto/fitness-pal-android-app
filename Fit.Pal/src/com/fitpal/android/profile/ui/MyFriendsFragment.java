@@ -188,6 +188,7 @@ public class MyFriendsFragment extends BaseFragment {
 			ArrayList<String> names = new ArrayList<String>();
 			for (GraphUser user : selection) {
 				names.add(user.getName());
+				System.out.println(user.getName() + "," + user.getId());
 			}
 			results = TextUtils.join(", ", names);
 		} else {

@@ -21,7 +21,7 @@
             android:id="@+id/add_facebook_frnds"
             android:layout_width="fill_parent"
             android:layout_height="60dip"
-            android:layout_marginBottom="3dip"
+            android:layout_marginBottom="1dip"
             android:background="@color/dark_gray"
             android:orientation="horizontal"
             android:paddingLeft="10dip"
