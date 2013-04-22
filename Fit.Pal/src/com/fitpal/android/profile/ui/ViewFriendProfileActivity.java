@@ -1,6 +1,7 @@
 package com.fitpal.android.profile.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.SharedPreferenceStore;
+import com.fitpal.android.planner.ui.PlannerCalendarActivity;
 import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
 import com.fitpal.android.profile.entity.Profile;
 import com.fitpal.android.utils.Utils;
@@ -75,7 +77,9 @@ public class ViewFriendProfileActivity extends SherlockFragmentActivity {
 	 private class ViewCalendarListener implements MenuItem.OnMenuItemClickListener{
 
 			public boolean onMenuItemClick(MenuItem item) {
-				
+				AppInfo.friendProfile = mProfile;
+				Intent intent = new Intent(mActivity, PlannerCalendarActivity.class);
+				mActivity.startActivity(intent);
 				return false;
 			}
 	    }

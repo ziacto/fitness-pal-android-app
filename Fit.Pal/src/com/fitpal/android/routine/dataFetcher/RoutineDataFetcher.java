@@ -1,5 +1,6 @@
 package com.fitpal.android.routine.dataFetcher;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class RoutineDataFetcher {
 		List<Routine> routineList = null;
 
 		try{
-			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_ROUTINE_URL + userName));
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_ROUTINE_URL + URLEncoder.encode(userName)));
 			if(!Utils.isNullOrEmptyStr(response)){
 				RoutineResponse routineResp = gson.fromJson(response, RoutineResponse.class);
 				if(routineResp != null)

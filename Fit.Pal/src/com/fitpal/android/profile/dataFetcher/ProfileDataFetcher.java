@@ -1,6 +1,7 @@
 package com.fitpal.android.profile.dataFetcher;
 
 import java.io.ObjectInputStream.GetField;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ProfileDataFetcher {
 	public static Profile fetchProfileInfo(String userName){
 		Profile profile = null;
 		try{
-			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_USER_URL + userName));
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_USER_URL + URLEncoder.encode(userName)));
 			if(!Utils.isNullOrEmptyStr(response)){
 				profile = gson.fromJson(response, Profile.class);
 				if(profile == null)
@@ -77,7 +78,7 @@ public class ProfileDataFetcher {
 		List<Profile> profileList = null;
 		
 		try{
-			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_FRIENDS_URL + username));
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_FRIENDS_URL + URLEncoder.encode(username)));
 			if(!Utils.isNullOrEmptyStr(response)){
 				FriendsResponse friendsResp = gson.fromJson(response, FriendsResponse.class);
 				if(friendsResp == null){
@@ -97,7 +98,7 @@ public class ProfileDataFetcher {
 		List<Profile> profileList = null;
 		
 		try{
-			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_NEARBY_USERS_URL + userName));
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_NEARBY_USERS_URL + URLEncoder.encode(userName)));
 			if(!Utils.isNullOrEmptyStr(response)){
 				NearbyUsersResponse nearbyResp = gson.fromJson(response, NearbyUsersResponse.class);
 				if(nearbyResp == null){

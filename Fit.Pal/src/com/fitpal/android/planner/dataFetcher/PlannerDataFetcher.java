@@ -1,5 +1,6 @@
 package com.fitpal.android.planner.dataFetcher;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class PlannerDataFetcher {
 	public static List<Task> fetchTaskList(String userName, String date){
 		List<Task> taskList = null;
 		try{
-			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(String.format(GET_TASL_URL,userName, date)));
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(String.format(GET_TASL_URL,URLEncoder.encode(userName), date)));
 			if(!Utils.isNullOrEmptyStr(response)){
 				TaskResponse taskResp = gson.fromJson(response, TaskResponse.class);
 				if(taskResp != null)

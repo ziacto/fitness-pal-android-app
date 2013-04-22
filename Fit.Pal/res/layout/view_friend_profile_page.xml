@@ -49,7 +49,7 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="DOB"
-            android:textColor="@color/light_text_sub"
+            android:textColor="@color/light_text_main"
             android:textSize="22dip"
             android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="Email"
-            android:textColor="@color/light_text_sub"
+            android:textColor="@color/light_text_main"
             android:textSize="22dip"
             android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="Weight"
-            android:textColor="@color/light_text_sub"
+            android:textColor="@color/light_text_main"
             android:textSize="22dip"
             android:textStyle="bold" />
 
