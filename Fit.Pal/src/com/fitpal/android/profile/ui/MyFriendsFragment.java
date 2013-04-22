@@ -65,8 +65,19 @@ public class MyFriendsFragment extends BaseFragment {
 			public void onClick(View v) {
 				fadeOutAddFriendsPanel();
 				final FriendPickerFragment fragment = new FriendPickerFragment();
-				setFriendPickerListeners(fragment);
+				setFriendPickerListeners(fragment);	
 				showPickerFragment(fragment);
+			}
+		});
+		
+		View searchNearbyFriends = view.findViewById(R.id.search_nearby_people);
+		searchNearbyFriends.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				fadeOutAddFriendsPanel();
+				Intent intent = new Intent(mActivity, FindNearbyUsersActivity.class);
+				mActivity.startActivity(intent);
 			}
 		});
 	}
@@ -103,8 +114,6 @@ public class MyFriendsFragment extends BaseFragment {
 		new GetMyFriendsTask().execute(null, null, null);
 		super.onResume();
 	}
-
-	/* End Of Action Mode class */
 
 	private class GetMyFriendsTask extends AsyncTask<Void, Void, Void>{
 

@@ -14,6 +14,15 @@ import java.util.Set;
 
 public class Utils {
 
+	public static double convertStringToDouble(String str){
+	
+		try{
+			return Double.parseDouble(str);
+		}catch(Exception e){
+			return 0;
+		}
+	}
+	
 	public static final boolean isNullOrEmptyStr(String str){
 		return (str==null || "".equals(str.trim()));
 	}

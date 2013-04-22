@@ -54,4 +54,10 @@ public class ProfileDataFetcher {
 		
 		return profileList;
 	}
+	
+	public static List<Profile> getNearbyPeople(String username){
+		List<Profile> profileList = new ArrayList<Profile>();
+		
+		return profileList;
+	}
 }

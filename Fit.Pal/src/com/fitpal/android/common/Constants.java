@@ -27,4 +27,10 @@ public class Constants {
 		exercisesMap.put("Shoulder", SHOULDER_EXERCISES);
 		exercisesMap.put("Biceps", BICEPS_EXERCISES);
 	}
+	
+	public static final String KEY_LONGITUDE = "KEY_LONGITUDE";
+	public static final String KEY_LATITUDE = "KEY_LATITUDE";
+	public static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
+    public static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 10; // 10 minute
+    public static final long LOCATION_UPDATE_TIME = 20 * 60 * 1000; // 20 minutes
 }

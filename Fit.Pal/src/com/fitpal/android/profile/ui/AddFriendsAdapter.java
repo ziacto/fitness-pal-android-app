@@ -13,14 +13,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class FriendsAdapter extends BaseAdapter{
+public class AddFriendsAdapter extends BaseAdapter{
 
 	private List<Profile> mProfileList = null;
 	private Activity mActivity = null;
 	private LayoutInflater layoutInflator = null;
 	private View mView;
 	
-	public FriendsAdapter(Activity activity, List<Profile> profileList){
+	public AddFriendsAdapter(Activity activity, List<Profile> profileList){
 		mActivity = activity;
 		mProfileList = profileList;
 		layoutInflator = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,8 +51,8 @@ public class FriendsAdapter extends BaseAdapter{
 		final Profile routine = mProfileList.get(position);
 		
 		mView = convertView;
-		mView = layoutInflator.inflate(R.layout.friends_row_layout, null);
-		TextView routineName = (TextView)mView.findViewById(R.id.tv_friend_name);
+		mView = layoutInflator.inflate(R.layout.add_friend_row_layout, null);
+		TextView routineName = (TextView)mView.findViewById(R.id.tv_user_name);
 		routineName.setText(routine.displayName);
 		
 		return mView;

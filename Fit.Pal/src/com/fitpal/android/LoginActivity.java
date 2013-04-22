@@ -137,7 +137,7 @@ public class LoginActivity extends FragmentActivity{
             		public void run(){
             			Profile profile = new Profile();
             			profile.userName = user.getUsername();
-            			profile.name = user.getName();
+            			profile.displayName = user.getName();
             			ProfileDataFetcher.addNewUser(profile);
             		}
             	}.start();

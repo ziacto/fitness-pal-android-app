@@ -2,7 +2,7 @@ package com.fitpal.android.profile.entity;
 
 public class Profile {
 
-	public String name;
+	public String displayName;
 	public String userName;
 	public String statusMessage;
 	public String gender;
@@ -10,4 +10,6 @@ public class Profile {
 	public String email;
 	public String weight;
 	public String height;
+	public double latitude;
+	public double longitude;
 }
