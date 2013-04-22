@@ -3,7 +3,6 @@ package com.fitpal.android.profile.ui;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -16,32 +15,32 @@ import com.facebook.Session;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 import com.fitpal.android.R;
+import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
 import com.fitpal.android.profile.entity.Profile;
-import com.fitpal.android.utils.AndroidUtils;
 import com.fitpal.android.utils.Utils;
 
-public class ProfileActivity extends SherlockFragmentActivity {
+public class ViewFriendProfileActivity extends SherlockFragmentActivity {
 
 	private ProfilePictureView profilePictureView;
 	private Profile mProfile;
 	private Activity mActivity;
 	private TextView userNameView;
-	private EditText dob;
-	private EditText email;
-	private EditText height;
-	private EditText weight;
+	private TextView dob;
+	private TextView email;
+	private TextView height;
+	private TextView weight;
 	private String mUserName;
-	private String mFacebookId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
 		mActivity = this;
-		setContentView(R.layout.profile_page);
+		mProfile = AppInfo.friendProfile;
+		setContentView(R.layout.view_friend_profile_page);
 
 		Session session = Session.getActiveSession();
 
@@ -51,46 +50,32 @@ public class ProfileActivity extends SherlockFragmentActivity {
 
 		profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
 		userNameView = (TextView) findViewById(R.id.tv_username);
-		dob = (EditText) findViewById(R.id.et_dob);
-		email = (EditText) findViewById(R.id.et_email);
-		height = (EditText) findViewById(R.id.et_height);
-		weight = (EditText) findViewById(R.id.et_weight);
+		dob = (TextView) findViewById(R.id.et_dob);
+		email = (TextView) findViewById(R.id.et_email);
+		height = (TextView) findViewById(R.id.et_height);
+		weight = (TextView) findViewById(R.id.et_weight);
 
-		new GetUserProfile().execute(null, null, null);
+		email.setText(mProfile.email);
+		height.setText(mProfile.height);
+		weight.setText(mProfile.weight);
+		dob.setText(mProfile.dob);
+		userNameView.setText(mProfile.displayName);
+		
 		makeUserRequest(session);
 	}
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
-		menuInflater.inflate(R.menu.menu_profile, menu);
-		menu.getItem(0).setOnMenuItemClickListener(new SaveListener());
+		menuInflater.inflate(R.menu.menu_view_friend_profile, menu);
+		menu.getItem(0).setOnMenuItemClickListener(new ViewCalendarListener());
 		return super.onCreateOptionsMenu(menu);
 	}
 	
-	 private class SaveListener implements MenuItem.OnMenuItemClickListener{
+	 private class ViewCalendarListener implements MenuItem.OnMenuItemClickListener{
 
 			public boolean onMenuItemClick(MenuItem item) {
-				new Thread(){
-					public void run(){
-						mProfile.dob = dob.getText().toString();
-						mProfile.email = email.getText().toString();
-						mProfile.weight = weight.getText().toString();
-						mProfile.height = height.getText().toString();
-						mProfile.height = height.getText().toString();
-						mProfile.userName = mUserName;
-						mProfile.facebookId = mFacebookId;
-						
-						ProfileDataFetcher.updateProfile(mProfile);
-						mActivity.runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								AndroidUtils.showToastNotification("Profile Saved", mActivity);
-								finish();
-							}
-						});
-					}
-				}.start();
+				
 				return false;
 			}
 	    }
@@ -107,9 +92,8 @@ public class ProfileActivity extends SherlockFragmentActivity {
 				// If the response is successful
 				if (session == Session.getActiveSession()) {
 					if (user != null) {
-						mFacebookId = user.getId();
-						profilePictureView.setProfileId(user.getId());
-						userNameView.setText(user.getName());
+						profilePictureView.setProfileId(mProfile.facebookId);
+						
 					}
 				}
 				if (response.getError() != null) {
@@ -136,10 +120,7 @@ public class ProfileActivity extends SherlockFragmentActivity {
 			if(mProfile == null)
 				return;
 			
-			email.setText(mProfile.email);
-			height.setText(mProfile.height);
-			weight.setText(mProfile.weight);
-			dob.setText(mProfile.dob);
+			
 		}
 	}
 }

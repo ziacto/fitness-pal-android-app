@@ -49,17 +49,17 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="DOB"
-            android:textColor="@color/black"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/et_dob"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.6"
-            android:textColor="@color/text_color"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
     </LinearLayout>
@@ -78,17 +78,17 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="Email"
-            android:textColor="@color/black"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/et_email"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.6"
-            android:textColor="@color/text_color"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
     </LinearLayout>
@@ -107,17 +107,17 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="Weight"
-            android:textColor="@color/black"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/et_weight"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.6"
-            android:textColor="@color/text_color"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
     </LinearLayout>
@@ -136,17 +136,17 @@
             android:layout_weight="0.4"
             android:paddingLeft="10dip"
             android:text="Height"
-            android:textColor="@color/black"
+            android:textColor="@color/light_text_main"
             android:textSize="22dip"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/et_height"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.6"
-            android:textColor="@color/text_color"
+            android:textColor="@color/light_text_sub"
             android:textSize="22dip"
             android:textStyle="bold" />
     </LinearLayout>

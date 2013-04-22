@@ -141,6 +141,7 @@ public class LoginActivity extends SherlockFragmentActivity{
             			Profile profile = new Profile();
             			profile.userName = user.getUsername();
             			profile.displayName = user.getName();
+            			profile.facebookId = user.getId();
             			ProfileDataFetcher.addNewUser(profile);
             		}
             	}.start();

@@ -43,6 +43,7 @@ public class FindNearbyUsersActivity extends SherlockFragmentActivity{
 
 	private void initialize(){
 		setUpMapIfNeeded();
+		new GetNearbyPeopleTask().execute(null, null, null);
 	}
 
 	private void setUpMapIfNeeded() {
@@ -81,7 +82,7 @@ public class FindNearbyUsersActivity extends SherlockFragmentActivity{
 		}
 	}
 	
-	private class GetMyFriendsTask extends AsyncTask<Void, Void, Void>{
+	private class GetNearbyPeopleTask extends AsyncTask<Void, Void, Void>{
 
 		@Override
 		protected Void doInBackground(Void... params) {

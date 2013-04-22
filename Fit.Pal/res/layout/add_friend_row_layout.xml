@@ -1,19 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="60dip"
     android:orientation="horizontal"
-    android:background="@color/light_list_background" >
+    android:weightSum="1"
+    android:background="@color/light_list_background"
+    >
+    
+    <com.facebook.widget.ProfilePictureView
+            android:id="@+id/profilePicture"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.2"
+            android:gravity="center_horizontal"
+            facebook:preset_size="small" />
     
     <TextView 
         android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="50dip"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_text_main"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_weight="0.6"
+        />
+
+   <TextView
+        android:id="@+id/btn_add_friend"
+        android:text="Add"
+        android:gravity="center"
+        android:layout_weight="0.2"
+        android:layout_width="0dip"  
+        android:layout_height="40dip"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="16dip"
+        android:textStyle="bold"
         android:paddingTop="5dip"
-        android:paddingLeft="20dip"
-        android:background="@color/light_text_main"
+        android:layout_marginRight="5dip"
+        android:layout_gravity="center"
+        android:background="@drawable/green_button_selector"
+     />
+
+   	<TextView 
+        android:id="@+id/tv_msg"
+        android:visibility="gone"
+        android:text="Request Sent"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_text_sub"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
         />
 
 </LinearLayout>

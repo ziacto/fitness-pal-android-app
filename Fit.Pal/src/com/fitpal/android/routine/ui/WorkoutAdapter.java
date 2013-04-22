@@ -3,7 +3,6 @@ package com.fitpal.android.routine.ui;
 import java.util.List;
 
 import com.fitpal.android.R;
-import com.fitpal.android.routine.entity.Routine;
 import com.fitpal.android.routine.entity.Workout;
 import com.fitpal.android.utils.Utils;
 
@@ -54,10 +53,14 @@ public class WorkoutAdapter extends BaseAdapter{
 
 		mView = convertView;
 		mView = layoutInflator.inflate(R.layout.workout_row_layout, null);
-		TextView routineName = (TextView)mView.findViewById(R.id.tv_workout_name);
+		TextView workoutName = (TextView)mView.findViewById(R.id.tv_workout_name);
 
 		if(workout != null && !Utils.isNullOrEmptyStr(workout.exercise))
-			routineName.setText(workout.exercise + "(" + workout.workoutBody + ")");
+			workoutName.setText(workout.exercise);
+		
+		TextView bodyPartName = (TextView)mView.findViewById(R.id.tv_body_name);
+		if(workout != null && !Utils.isNullOrEmptyStr(workout.workoutBody))
+			bodyPartName.setText(workout.workoutBody);
 		
 		return mView;
 	}

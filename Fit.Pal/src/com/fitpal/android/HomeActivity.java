@@ -179,6 +179,7 @@ public class HomeActivity extends SherlockFragmentActivity {
 
 	@Override
 	public void onBackPressed(){
+		System.out.println("om back pressed");
 		Fragment currentFragment = FragmentManager.getInstance().getCurrentFragment();
 		if(currentFragment instanceof MyFriendsFragment && AppInfo.addPanelShown){
 			MyFriendsFragment friendsFragment = (MyFriendsFragment) currentFragment;

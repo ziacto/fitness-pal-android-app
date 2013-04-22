@@ -63,7 +63,6 @@ public class MyFriendsFragment extends BaseFragment {
 			
 			@Override
 			public void onClick(View v) {
-				fadeOutAddFriendsPanel();
 				final FriendPickerFragment fragment = new FriendPickerFragment();
 				setFriendPickerListeners(fragment);	
 				showPickerFragment(fragment);
@@ -84,7 +83,9 @@ public class MyFriendsFragment extends BaseFragment {
 
 	@Override
 	public void addClicked(){
+		System.out.println("add clicked");
 		mAddFriendPanel = (LinearLayout)mActivity.findViewById(R.id.add_friend_layoout);
+		mListView.setVisibility(View.GONE);
 		AnimUtils.setLayoutAnim_slidedownfromtop(mAddFriendPanel, mActivity);
 		AppInfo.addPanelShown = true;
 	}
@@ -93,15 +94,20 @@ public class MyFriendsFragment extends BaseFragment {
 		if(mAddFriendPanel == null)
 			return;
 		
+		System.out.println("fade panel called");
 		Animation animation = AnimUtils.runFadeOutAnimationOn(mActivity, mAddFriendPanel);
 
 		animation.setAnimationListener(new Animation.AnimationListener() {
 			public void onAnimationStart(Animation animation) {
+				System.out.println("On Animation Start");
 			}
 			public void onAnimationEnd(Animation animation) {
+				System.out.println("animation end -- start");
 				mAddFriendPanel.setVisibility(View.GONE);
+				mListView.setVisibility(View.VISIBLE);
 				mAddFriendPanel = null;
 				AppInfo.addPanelShown = false;
+				System.out.println("animation end -- end");
 			}
 			public void onAnimationRepeat(Animation animation) {
 			}
@@ -134,10 +140,10 @@ public class MyFriendsFragment extends BaseFragment {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-					// mFriendsList.get(position);
-					//Intent intent = new Intent(mActivity, AddRoutineActivity.class);
-					//intent.putExtra("MODE", "EDIT");
-					//mActivity.startActivity(intent);
+					AppInfo.friendProfile = mFriendsList.get(position);
+					Intent intent = new Intent(mActivity, ViewFriendProfileActivity.class);
+					intent.putExtra("MODE", "EDIT");
+					mActivity.startActivity(intent);
 				}
 
 			});
@@ -181,6 +187,7 @@ public class MyFriendsFragment extends BaseFragment {
 		FragmentManager fm = ((FragmentActivity)mActivity).getSupportFragmentManager();
 		fm.popBackStack();
 
+		fadeOutAddFriendsPanel();
 		String results = "";
 
 		Collection<GraphUser> selection = fragment.getSelection();
@@ -188,7 +195,7 @@ public class MyFriendsFragment extends BaseFragment {
 			ArrayList<String> names = new ArrayList<String>();
 			for (GraphUser user : selection) {
 				names.add(user.getName());
-				System.out.println(user.getName() + "," + user.getId());
+				System.out.println(user.getName() + "," + user.getId() + "," + user.getUsername());
 			}
 			results = TextUtils.join(", ", names);
 		} else {
