@@ -21,6 +21,7 @@ import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
 import com.fitpal.android.profile.entity.Profile;
 import com.fitpal.android.utils.AndroidUtils;
+import com.fitpal.android.utils.Utils;
 
 public class ProfileActivity extends SherlockFragmentActivity {
 
@@ -36,6 +37,7 @@ public class ProfileActivity extends SherlockFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
 		mActivity = this;
 		setContentView(R.layout.profile_page);

@@ -2,6 +2,7 @@ package com.fitpal.android.profile.ui;
 
 import java.util.List;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.fitpal.android.R;
 import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.SharedPreferenceStore;
@@ -15,7 +16,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.app.Activity;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class FindNearbyUsersActivity extends FragmentActivity{
+public class FindNearbyUsersActivity extends SherlockFragmentActivity{
 
 	private Activity mActivity;
 	private GoogleMap mMap;
@@ -33,6 +33,7 @@ public class FindNearbyUsersActivity extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
 		mActivity = this;
 		setContentView(R.layout.show_nearby_users_page);

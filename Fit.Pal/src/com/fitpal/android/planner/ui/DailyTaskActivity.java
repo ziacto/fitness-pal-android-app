@@ -23,6 +23,7 @@ import com.fitpal.android.planner.entity.Task;
 import com.fitpal.android.routine.dataFetcher.RoutineDataFetcher;
 import com.fitpal.android.routine.entity.Routine;
 import com.fitpal.android.utils.AndroidUtils;
+import com.fitpal.android.utils.Utils;
 
 public class DailyTaskActivity extends SherlockFragmentActivity {
 
@@ -36,6 +37,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.daily_planner_page);
 		mActivity = this;

@@ -1,5 +1,6 @@
 package com.fitpal.android;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.FacebookOperationCanceledException;
 import com.facebook.Session;
@@ -13,6 +14,7 @@ import com.fitpal.android.common.Constants;
 import com.fitpal.android.common.SharedPreferenceStore;
 import com.fitpal.android.profile.dataFetcher.ProfileDataFetcher;
 import com.fitpal.android.profile.entity.Profile;
+import com.fitpal.android.utils.Utils;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -20,7 +22,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
-public class LoginActivity extends FragmentActivity{
+public class LoginActivity extends SherlockFragmentActivity{
 
 	private final String PENDING_ACTION_BUNDLE_KEY = "com.fitpal.android:PendingAction";
 	private LoginButton loginButton;
@@ -46,8 +48,9 @@ public class LoginActivity extends FragmentActivity{
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
-		
+
         uiHelper = new UiLifecycleHelper(this, callback);
         uiHelper.onCreate(savedInstanceState);
 

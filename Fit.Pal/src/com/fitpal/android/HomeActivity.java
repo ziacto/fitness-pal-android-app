@@ -72,18 +72,18 @@ public class HomeActivity extends SherlockFragmentActivity {
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    	ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(Utils.getActionBarBackground(this));
+    	super.onCreate(savedInstanceState);
         mActivity = this;
         mLocationTracker = new LocationTracker(mActivity);
 
         if(AppInfo.loginActivity != null){
         	AppInfo.loginActivity.finish();
         }
-        setContentView(R.layout.activity_launcher);
-        ActionBar actionBar = getSupportActionBar();
         
-        Drawable blueBackground = getResources().getDrawable(R.drawable.abs_list_activated_holo);
-        actionBar.setBackgroundDrawable(blueBackground);
+        setContentView(R.layout.activity_launcher);
+        
         actionBar.setCustomView(R.layout.actionbar_top); //load your layout
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME|ActionBar.DISPLAY_SHOW_CUSTOM);
         findViewById(R.id.action_add_friend).setOnClickListener(addBtnActionListsner);

@@ -119,6 +119,7 @@ public class PlannerCalendarFragment extends BaseFragment {
 				summary.setText(text);
 				summary.setVisibility(View.VISIBLE);
 			}else{
+				btnAddTask.setText("Add Task ( " + mDate + ")");
 				btnAddTask.setVisibility(View.VISIBLE);
 				summaryDate.setVisibility(View.GONE);
 				summary.setVisibility(View.GONE);

@@ -11,9 +11,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.fitpal.android.R;
+
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+
 
 public class Utils {
 
+	public static Drawable getActionBarBackground(Activity activity){
+		return activity.getResources().getDrawable(R.drawable.abs_list_activated_holo);
+	}
 	public static double convertStringToDouble(String str){
 	
 		try{

@@ -17,6 +17,7 @@ import com.facebook.widget.FriendPickerFragment;
 import com.facebook.widget.PickerFragment;
 import com.fitpal.android.R;
 import com.fitpal.android.utils.AndroidUtils;
+import com.fitpal.android.utils.Utils;
 
 public class AddFacebookFriendsActivity extends SherlockFragmentActivity {
 
@@ -24,6 +25,7 @@ public class AddFacebookFriendsActivity extends SherlockFragmentActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
+		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
 		mActivity = this;
 		setContentView(R.layout.add_fb_friends_page);

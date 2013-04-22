@@ -12,6 +12,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.fitpal.android.R;
 import com.fitpal.android.common.AppInfo;
 import com.fitpal.android.common.Constants;
+import com.fitpal.android.utils.Utils;
 
 public class AddWorkoutActivity  extends SherlockFragmentActivity {
 
@@ -21,6 +22,7 @@ public class AddWorkoutActivity  extends SherlockFragmentActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		getSupportActionBar().setBackgroundDrawable(Utils.getActionBarBackground(this));
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_workout_page);
 		mActivity = this;

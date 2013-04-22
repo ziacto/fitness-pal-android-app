@@ -25,9 +25,9 @@
         android:textColor="@color/white"
         android:textSize="20dip"
         android:textStyle="bold"
-        android:background="@color/black_2"
+        android:background="@drawable/green_button_selector"
      />
-    
+
     <ListView 
 	    android:id="@+id/lv_workouts"
 	    android:layout_width="fill_parent"
