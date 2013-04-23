@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_app_background"
     android:orientation="vertical" >
 
     <EditText
@@ -10,6 +11,7 @@
         android:layout_height="60dip"
         android:hint="&lt;Routine Name>"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="20dip" />
 
     
@@ -17,8 +19,9 @@
         android:id="@+id/btn_add_workout"
         android:text="@string/add_workout"
         android:layout_marginTop="10dip"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
         android:gravity="center"
         android:layout_width="fill_parent" 
         android:layout_height="50dip"

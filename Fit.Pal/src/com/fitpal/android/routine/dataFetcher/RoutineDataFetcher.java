@@ -19,6 +19,7 @@ public class RoutineDataFetcher {
 	private static final String EDIT_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/edit-routine";
 	private static final String DELETE_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/delete-routine?id=";
 	private static final String SHARE_ROUTINE_URL = DataCommunicator.SERVER_BASE_ADDRESS +  "/share-routine?id=";
+	private static final String GET_ROUTINE_REPORT = DataCommunicator.SERVER_BASE_ADDRESS +  "/get-routines-time?username=";
 	
 	public static List<Routine> fetchRoutineList(String userName){
 		List<Routine> routineList = null;
@@ -72,5 +73,24 @@ public class RoutineDataFetcher {
 		}catch(Exception e){
 			System.out.println(e);
 		}
+	}
+	
+	public static List<Routine> fetchRoutineReport(String userName){
+		List<Routine> routineList = null;
+
+		try{
+			String response = Utils.convertStreamToString(DataCommunicator.sendGetDataToServer(GET_ROUTINE_REPORT + URLEncoder.encode(userName)));
+			if(!Utils.isNullOrEmptyStr(response)){
+				RoutineResponse routineResp = gson.fromJson(response, RoutineResponse.class);
+				if(routineResp != null)
+					routineList = routineResp.list;
+				else
+					routineList = new ArrayList<Routine>();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			routineList = new ArrayList<Routine>();
+		}
+		return routineList;
 	}
 }

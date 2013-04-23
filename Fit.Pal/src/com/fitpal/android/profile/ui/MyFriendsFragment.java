@@ -117,6 +117,7 @@ public class MyFriendsFragment extends BaseFragment {
 
 	@Override
 	public void onResume(){
+		com.fitpal.android.common.FragmentManager.getInstance().addFragmentToMap(this, "com.fitpal.android.profile.ui.MyFriendsFragment" );
 		new GetMyFriendsTask().execute(null, null, null);
 		super.onResume();
 	}

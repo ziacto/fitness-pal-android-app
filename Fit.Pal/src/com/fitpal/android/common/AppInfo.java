@@ -12,6 +12,10 @@ public class AppInfo {
 	public static LoginActivity loginActivity;
 	public static boolean addPanelShown = false;
 	public static Profile friendProfile;
+	
+	public static String chartUser;
+	public static double[] chartValues;
+	public static String[] chartKeys;
 
 }
 

@@ -3,6 +3,7 @@ package com.fitpal.android.planner.ui;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 	private Activity mActivity;
 	private ActionMode mActionMode;
 	private String mDate;
+	private String mUserName;
 	private ListView mLvDailyTasks;
 	private List<Task> mTaskList;
 	private DailyTaskAdapter mTaskAdapter;
@@ -46,6 +48,8 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		
 		if(extras != null){
 			mDate = extras.getString(Constants.KEY_DATE);
+			mUserName = extras.getString(Constants.KEY_USERNAME);
+			setTitle("Tasks : " + mDate);
 		}
 		mLvDailyTasks = (ListView)findViewById(R.id.lv_daily_planner);
 		mLvDailyTasks.setClickable(true);
@@ -72,6 +76,10 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.menu_daily_task, menu);
 		menu.getItem(0).setOnMenuItemClickListener(new AddListener());
+		
+		if(!Utils.isNullOrEmptyStr(mUserName)){
+			menu.getItem(0).setVisible(false);
+		}
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -131,6 +139,7 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
+        	
         }
     }
 	
@@ -157,8 +166,13 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			// get daily tasks from Server
-			String userName = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity);
-			mTaskList = PlannerDataFetcher.fetchTaskList(userName, mDate);
+			String username = null;
+			if(Utils.isNullOrEmptyStr(mUserName)){
+				username = SharedPreferenceStore.getValueFromStore(Constants.KEY_USERNAME, mActivity);
+			}else{
+				username = mUserName;
+			}
+			mTaskList = PlannerDataFetcher.fetchTaskList(username, mDate);
 			System.out.println("Task List : " + mTaskList.size());
 			return null;
 		}
@@ -167,14 +181,29 @@ public class DailyTaskActivity extends SherlockFragmentActivity {
 		protected void onPostExecute(Void param) {
 			mTaskAdapter = new DailyTaskAdapter(mActivity, mTaskList);
 			mLvDailyTasks.setAdapter(mTaskAdapter);
-			mLvDailyTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			
+			if(Utils.isNullOrEmptyStr(mUserName)){
+				mLvDailyTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-					mActionMode = startActionMode(new ItemSelectActionMode(mTaskList.get(position), position));
-				}
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+						mActionMode = startActionMode(new ItemSelectActionMode(mTaskList.get(position), position));
+					}
 
-			});
+				});
+			}else{
+				mLvDailyTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+						long routineId = mTaskList.get(position).routineId;
+						Intent intent = new Intent();
+						//mActivity.startActivity(intent);
+					}
+
+				});
+
+			}
 		}
 
 	}

@@ -8,4 +8,5 @@ public class Routine {
 	public String name;
 	public String userName;
 	public List<Workout> workoutList;
+	public int timeSpent;
 }

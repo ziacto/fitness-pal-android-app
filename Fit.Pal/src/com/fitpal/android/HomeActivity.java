@@ -74,25 +74,29 @@ public class HomeActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
     	ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(Utils.getActionBarBackground(this));
+        actionBar.setCustomView(R.layout.actionbar_top); //load your layout
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME|ActionBar.DISPLAY_SHOW_CUSTOM);
+
     	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_launcher);
+    	
         mActivity = this;
         mLocationTracker = new LocationTracker(mActivity);
 
         if(AppInfo.loginActivity != null){
         	AppInfo.loginActivity.finish();
+        	AppInfo.loginActivity = null;
         }
         
-        setContentView(R.layout.activity_launcher);
-        
-        actionBar.setCustomView(R.layout.actionbar_top); //load your layout
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME|ActionBar.DISPLAY_SHOW_CUSTOM);
         findViewById(R.id.action_add_friend).setOnClickListener(addBtnActionListsner);
         findViewById(R.id.action_add_routine).setOnClickListener(addBtnActionListsner);
+        findViewById(R.id.action_show_chart).setOnClickListener(addBtnActionListsner);
 		TextView title = (TextView)findViewById(R.id.action_bar_title) ;
 		title.setText("Planner");
 
         hideTopActionItems();
 
+        findViewById(R.id.action_show_chart).setVisibility(View.VISIBLE);
         String defaultFragment = "com.fitpal.android.planner.ui.PlannerCalendarFragment";
         FragmentManager.getInstance().launchFragment((FragmentActivity)mActivity, R.id.fragmentHolder, defaultFragment);
         
@@ -122,6 +126,7 @@ public class HomeActivity extends SherlockFragmentActivity {
 		String fragmentClass = null;
 		switch(item.getItemId()){
 			case R.id.menu_calendar:
+				findViewById(R.id.action_show_chart).setVisibility(View.VISIBLE);
 				fragmentClass = "com.fitpal.android.planner.ui.PlannerCalendarFragment";
 				title.setText("Planner");
 			break;
@@ -165,6 +170,7 @@ public class HomeActivity extends SherlockFragmentActivity {
 	private void hideTopActionItems(){
 		findViewById(R.id.action_add_friend).setVisibility(View.GONE);
 		findViewById(R.id.action_add_routine).setVisibility(View.GONE);
+		findViewById(R.id.action_show_chart).setVisibility(View.GONE);
 	}
 	
 	public void onPause(){

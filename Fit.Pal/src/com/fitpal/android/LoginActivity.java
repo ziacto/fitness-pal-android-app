@@ -26,8 +26,6 @@ public class LoginActivity extends SherlockFragmentActivity{
 
 	private final String PENDING_ACTION_BUNDLE_KEY = "com.fitpal.android:PendingAction";
 	private LoginButton loginButton;
-	private ProfilePictureView profilePictureView;
-	private TextView greeting;
 	private PendingAction pendingAction = PendingAction.NONE;
 	private GraphUser user;
 	private enum PendingAction {
@@ -72,10 +70,6 @@ public class LoginActivity extends SherlockFragmentActivity{
                 //handlePendingAction();
             }
         });
-
-        profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
-        greeting = (TextView) findViewById(R.id.greeting);
-
 
 	}
 	
@@ -152,13 +146,6 @@ public class LoginActivity extends SherlockFragmentActivity{
         	startActivity(intent);
         }else{
         	boolean enableButtons = (session != null && session.isOpened());
-        	if (enableButtons && user != null) {
-        		profilePictureView.setProfileId(user.getId());
-        		greeting.setText("Hello " + user.getFirstName());
-        	} else {
-        		profilePictureView.setProfileId(null);
-        		greeting.setText(null);
-        	}
         }
     }
 
