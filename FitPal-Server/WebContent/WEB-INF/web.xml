@@ -4,20 +4,110 @@
   
   <servlet>
       <servlet-name>GetUserProfile</servlet-name>
-      <servlet-class>com.fitpal.server.userProfile.servlet.GetUserProfile</servlet-class>
-      
+      <servlet-class>com.fitpal.server.object.servlet.GetUserProfile</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>AddRoutineServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.AddRoutineServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>DeleteRoutine</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.DeleteRoutine</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>EditRoutineServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.EditRoutineServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>AddUserServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.AddUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>EditUserServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.EditUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>AddTaskServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.AddTaskServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>GetTasks</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.GetTasks</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>GetRoutines</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.GetRoutines</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>AddFriendServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.AddFriendServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>GetFriendsServlet</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.GetFriendsServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>GetNearbyUsers</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.GetNearbyUsers</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>GetTimeSpentByRoutine</servlet-name>
+      <servlet-class>com.fitpal.server.object.servlet.GetTimeSpentByRoutine</servlet-class>
   </servlet>
   
   <servlet-mapping>
       <servlet-name>GetUserProfile</servlet-name>
-      <url-pattern>/user/profile/</url-pattern>
+      <url-pattern>/get-user</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>AddRoutineServlet</servlet-name>
+      <url-pattern>/add-routine</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>EditRoutineServlet</servlet-name>
+      <url-pattern>/edit-routine</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>AddUserServlet</servlet-name>
+      <url-pattern>/add-user</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>EditUserServlet</servlet-name>
+      <url-pattern>/edit-user</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>AddTaskServlet</servlet-name>
+      <url-pattern>/add-task</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GetTasks</servlet-name>
+      <url-pattern>/get-tasks</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GetRoutines</servlet-name>
+      <url-pattern>/get-routines</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>DeleteRoutine</servlet-name>
+      <url-pattern>/delete-routine</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>AddFriendServlet</servlet-name>
+      <url-pattern>/add-friend</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GetFriendsServlet</servlet-name>
+      <url-pattern>/get-friends</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GetNearbyUsers</servlet-name>
+      <url-pattern>/get-nearby-users</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GetTimeSpentByRoutine</servlet-name>
+      <url-pattern>/get-routines-time</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>test.html</welcome-file>
   </welcome-file-list>
 </web-app>

@@ -1,16 +1,18 @@
-package com.fitpal.server.userProfile.servlet;
+package com.fitpal.server.object.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fitpal.server.userProfile.db.UserProfileDAO;
-import com.fitpal.server.userProfile.entity.UserProfile;
+import com.fitpal.server.object.db.RoutineDAO;
+import com.fitpal.server.object.entity.Routine;
+import com.fitpal.server.object.entity.RoutineResponse;
 import com.google.gson.Gson;
 
-public class GetUserProfile extends HttpServlet{
+public class GetTimeSpentByRoutine extends HttpServlet{
 
 	private static final long serialVersionUID = -1451532615304774587L;
 	private static Gson gson = new Gson();
@@ -18,12 +20,10 @@ public class GetUserProfile extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		String userName = req.getParameter("username");
-		UserProfile userProfile = new UserProfileDAO().getUserProfile(userName);
-		if(userProfile == null)
-			userProfile = new UserProfile();
-
+		List<Routine> routines = (new RoutineDAO()).getTimeSpentByRountine(userName);
+		RoutineResponse response = new RoutineResponse();
+		response.list = routines;
 		res.setContentType("text/plain");
-		res.getWriter().println(gson.toJson(userProfile));
-
+		res.getWriter().println(gson.toJson(response));
 	}
 }
